@@ -1,4 +1,12 @@
-# Setup
-theme: jekyll-theme-cayman
+# Site settings
+#theme: jekyll-theme-cayman
 title: Population Genetics
 author: Adrián Gómez
+github_username: adriangeerre
+
+# Build settings
+sass:
+  sass_dir: _sass
+include: ['_pages']
+kramdown:
+  input: GFM
