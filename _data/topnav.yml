@@ -3,7 +3,7 @@
 navbar_singleitems:
 - items:
     - title: Github Repo
-      url: https://github.com/tomjohnson1492/documentation-theme-jekyll-next-version
+      url: https://github.com/adriangeerre
 
 #Topnav dropdowns
 navbar_dropdowns:
