@@ -3,7 +3,7 @@ language: english
 # Link to home
 url: /
 
-BASE_PATH: /popgen.github.io
+BASE_PATH: adriangeerre.github.io/popgen.github.io
 image_path: /assets/images
 port: 4000
 highlighter: rouge

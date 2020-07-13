@@ -9,12 +9,9 @@ tags: [PopGen1]
 <p><strong>Test - Insert an image</strong></p>
 
 <figure>
-    <a href="/docs/images/company_logo.png"><img src="/docs/images/company_logo.png"></a>
+    <a href="http://adriangeerre.github.io/popgen.github.io/assets/images/company_logo.png"><img src="http://adriangeerre.github.io/popgen.github.io/assets/images/company_logo.png"></a>
     <figcaption>Just a company logo.</figcaption>
-</figure>  # WORKING IN GITHUB
-
-
-![Crypt]({{site.url}}assets/images/crypt.jpg)  # NOT WORKING IN GITHUB
+</figure>
 
 ![Logo]({{ BASE_PATH }}/assets/images/company_logo.png)  # WORKING IN GITHUB
 
