@@ -2,7 +2,7 @@
 title: Sample2 topic
 permalink: sample2.html
 sidebar: generic
-tags: [PopGen1, PopGen2]
+#tags: [PopGen1, PopGen2]
 product: Generic
 ---
 
