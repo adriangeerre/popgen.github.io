@@ -15,7 +15,7 @@ highlighting_css: syntax # Select the theme for the code
 navbar_style: lighttheme-agr  # Select the theme of the website
 # navbar_logo: docs/images/samplelogo.png
 
-image_path: /_docs/images/
+#image_path: /_docs/images/
 
 markdown: kramdown
 kramdown:
