@@ -34,3 +34,9 @@ folders:
   - title: Troubleshooting
     tag_name: troubleshooting
     url: /tag-troubleshooting.html
+
+# Created by AGR
+
+  - title: Relation to PopGen1
+    tag_name: PopGen1
+    url: /tag-getting-started.html
