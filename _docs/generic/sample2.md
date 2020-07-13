@@ -8,24 +8,10 @@ tags: [PopGen1]
 
 <p><strong>Test - Insert an image</strong></p>
 
-Inserted picture: ![Mandala 1](/_docs/images/crypt.jpg)
+<figure>
+    <a href="/_docs/images/crypt.jpg"><img src="/_docs/images/crypt.jpg"></a>
+    <figcaption>Mandal created by the artist Crypt.</figcaption>
+</figure>
 
-Accesible picture: [Mandala 1](/_docs/images/crypt.jpg)
 
-
-Inserted picture: ![Mandala 2](_docs/images/crypt.jpg)
-
-Accesible picture: [Mandala 2](_docs/images/crypt.jpg)
-
-|
-
-Inserted picture: ![Mandala 3](images/crypt.jpg)
-
-Accesible picture: [Mandala 3](images/crypt.jpg)
-
-|
-
-Inserted picture: ![Mandala 4](crypt.jpg)
-
-Accesible picture: [Mandala 4](crypt.jpg)
-
+![Crypt]({{site.image_path}}/crypt.jpg)
