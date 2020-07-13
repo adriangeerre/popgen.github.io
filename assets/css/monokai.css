@@ -7,12 +7,12 @@
   border-radius: 5px;
   padding: 15px;
   padding-left: 10px;
-  background: #d4cfcf;
+  background: #202020;
   color: #C1C2C3;
 }
 
 
-.highlight .hll { background-color: #d4cfcf }
+.highlight .hll { background-color: #202020 }
 .highlight .c { color: #75715e } /* Comment */
 .highlight .err { color: #960050; background-color: #1e0010 } /* Error */
 .highlight .k { color: #66d9ef } /* Keyword */
