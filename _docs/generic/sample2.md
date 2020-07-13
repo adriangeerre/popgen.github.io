@@ -8,7 +8,7 @@ product: Generic
 
 <p><strong>Test - Insert an image</strong></p>
 
-Inserted picture: ![Crypt Mandala](/assets/images/crypt.jpg)
+Inserted picture: ![Crypt Mandala](/_docs/images/crypt.jpg)
 
-Accesible picture: [Crypt Mandala](/assets/images/crypt.jpg)
+Accesible picture: [Crypt Mandala](/_docs/images/crypt.jpg)
 
