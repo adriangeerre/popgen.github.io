@@ -9,8 +9,8 @@ tags: [PopGen1]
 <p><strong>Test - Insert an image</strong></p>
 
 <figure>
-    <a href="/_docs/images/crypt.jpg"><img src="/_docs/images/crypt.jpg"></a>
-    <figcaption>Mandal created by the artist Crypt.</figcaption>
+    <a href="/_docs/images/company_logo.png"><img src="/_docs/images/company_logo.png"></a>
+    <figcaption>Just a company logo.</figcaption>
 </figure>
 
 
