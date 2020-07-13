@@ -21,3 +21,7 @@ tags: [PopGen1]
 ![Logo2](_docs/images/company_logo.png)
 
 ![Assets](/assets/images/jekyll.png)
+
+<img src="/assets/img/jekyll.jpg" alt="">
+
+<img src="{{site.baseurl}}/assets/img/jekyll.jpg">
