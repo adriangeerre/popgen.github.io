@@ -8,19 +8,24 @@ tags: [PopGen1]
 
 <p><strong>Test - Insert an image</strong></p>
 
-Inserted picture: ![Mandala](/_docs/images/crypt.jpg)
+Inserted picture: ![Mandala 1](/_docs/images/crypt.jpg)
 
-Accesible picture: [Mandala](/_docs/images/crypt.jpg)
+Accesible picture: [Mandala 1](/_docs/images/crypt.jpg)
+
+
+Inserted picture: ![Mandala 2](_docs/images/crypt.jpg)
+
+Accesible picture: [Mandala 2](_docs/images/crypt.jpg)
 
 |
 
-Inserted picture: ![Mandala](images/crypt.jpg)
+Inserted picture: ![Mandala 3](images/crypt.jpg)
 
-Accesible picture: [Mandala](images/crypt.jpg)
+Accesible picture: [Mandala 3](images/crypt.jpg)
 
 |
 
-Inserted picture: ![Mandala](crypt.jpg)
+Inserted picture: ![Mandala 4](crypt.jpg)
 
-Accesible picture: [Mandala](crypt.jpg)
+Accesible picture: [Mandala 4](crypt.jpg)
 
