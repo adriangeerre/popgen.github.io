@@ -9,7 +9,7 @@ tags: [PopGen1]
 <p><strong>Test - Insert an image</strong></p>
 
 <figure>
-    <a href="/_docs/images/company_logo.png"><img src="/_docs/images/company_logo.png"></a>
+    <a href="/docs/images/company_logo.png"><img src="/docs/images/company_logo.png"></a>
     <figcaption>Just a company logo.</figcaption>
 </figure>  # WORKING IN GITHUB
 
