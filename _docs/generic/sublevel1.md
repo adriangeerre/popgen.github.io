@@ -1,6 +1,6 @@
 ---
-title: Sublevel3
-permalink: sublevel3.html
+title: Sublevel1
+permalink: sublevel1.html
 sidebar: generic
 tags: [getting-started, troubleshooting, formatting]
 product: Generic

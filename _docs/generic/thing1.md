@@ -1,6 +1,6 @@
 ---
-title: Thing 2 topic
-permalink: thing2.html
+title: Thing 1 topic
+permalink: thing1.html
 sidebar: generic
 product: Generic
 ---
