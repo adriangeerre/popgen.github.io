@@ -16,7 +16,6 @@ tags: [PopGen1]
 
 ![Crypt]({{site.url}}assets/images/crypt.jpg)  # NOT WORKING IN GITHUB
 
-![Logo](/_docs/images/company_logo.png)  # WORKING IN GITHUB
+![Logo]({{ BASE_PATH }}/assets/images/company_logo.png)  # WORKING IN GITHUB
 
-![Assets](/assets/images/jekyll.png) 	 # WORKING
-
+<img src="http://adriangeerre.github.io/popgen.github.io/assets/images/crypt.jpg" >  
