@@ -60,7 +60,7 @@ GEM
       jekyll-theme-primer (= 0.1.1)
       jekyll-titles-from-headings (= 0.1.2)
       jemoji (= 0.7.0)
-      kramdown (= 1.11.1)
+      kramdown (~> 1.14)
       liquid (= 3.0.6)
       listen (= 3.0.6)
       mercenary (~> 0.3)
