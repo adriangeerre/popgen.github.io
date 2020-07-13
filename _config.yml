@@ -4,7 +4,7 @@ language: english
 url: /
 
 # link to github repo
-#github_editme_path: https://github.com/tomjohnson1492/documentation-theme-jekyll-next-version/blob/gh-pages/
+github_editme_path: https://github.com/adriangeerre/popgen.github.io
 
 #image_path: _docs/images/
 port: 4000
