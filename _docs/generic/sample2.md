@@ -11,17 +11,14 @@ tags: [PopGen1]
 <figure>
     <a href="/_docs/images/company_logo.png"><img src="/_docs/images/company_logo.png"></a>
     <figcaption>Just a company logo.</figcaption>
-</figure>
+</figure>  # WORKING IN GITHUB
 
 
-![Crypt]({{site.image_path}}/crypt.jpg)
+![Crypt]({{site.image_path}}/crypt.jpg)  # NOT WORKING IN GITHUB
 
-![Logo](/_docs/images/company_logo.png)
+![Logo](/_docs/images/company_logo.png)  # WORKING IN GITHUB
 
-![Logo2](_docs/images/company_logo.png)
+![Logo2](_docs/images/company_logo.png)  # NOT
 
-![Assets](/assets/images/jekyll.png)
+![Assets](/assets/images/jekyll.png) 	 # NOT
 
-<img src="/assets/img/jekyll.jpg" alt="">
-
-<img src="{{site.baseurl}}/assets/img/jekyll.jpg">
