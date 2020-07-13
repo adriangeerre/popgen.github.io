@@ -9,11 +9,11 @@ product: Generic
 ## Chapter 1
 Connection to website: [dummy text](http://google.com) 
 
-# Chapter 2
+## Chapter 2
 
 Section 2 text
 
-### Chapter 3
+## Chapter 3
 
 more text
 
@@ -42,34 +42,6 @@ text
 text
 
 ## Chapter 10
-
-text
-
-## Chapter 11
-
-text
-
-## Chapter 12
-
-text
-
-## Chapter 13
-
-text
-
-## Chapter 14
-
-text
-
-## Chapter 15
-
-text
-
-## Chapter 16
-
-text
-
-## Chapter 17
 
 text
 
