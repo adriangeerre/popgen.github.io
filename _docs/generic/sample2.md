@@ -15,3 +15,9 @@ tags: [PopGen1]
 
 
 ![Crypt]({{site.image_path}}/crypt.jpg)
+
+![Logo](/_docs/images/company_logo.png)
+
+![Logo2](_docs/images/company_logo.png)
+
+![Assets](/assets/images/jekyll.png)
