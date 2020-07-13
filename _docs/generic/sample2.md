@@ -14,11 +14,11 @@ tags: [PopGen1]
 </figure>  # WORKING IN GITHUB
 
 
-![Crypt]({{site.image_path}}/crypt.jpg)  # NOT WORKING IN GITHUB
+![Crypt](/{{site.image_path}}/crypt.jpg)  # NOT WORKING IN GITHUB
 
 ![Logo](/_docs/images/company_logo.png)  # WORKING IN GITHUB
 
 ![Logo2](_docs/images/company_logo.png)  # NOT
 
-![Assets](/assets/images/jekyll.png) 	 # NOT
+![Assets](/assets/images/jekyll.png) 	 # WORKING
 
