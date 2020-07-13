@@ -10,9 +10,9 @@ image_path: docs/images/
 port: 4000
 highlighter: rouge
 
-highlighting_css: monokai
+highlighting_css: monokai # Select the theme for the code
 # options: "monokai" (black), "syntax" (white)
-navbar_style: lighttheme-bluegray
+navbar_style: lighttheme-agr  # Select the theme of the website
 # navbar_logo: docs/images/samplelogo.png
 
 image_path: /docs/images/
