@@ -21,11 +21,11 @@ folders:
         url: /sublevel1.html
 
         subsubfolders:
-        - title: Subsublevel
+        - title: Sub-Selection
           subsubfolderitems:
 
           - title: Sub-sublevel 1
-            url: /subsublevel1.html
+            url: /sublevel1.html
 
 - title: Second Level
   folderitems:

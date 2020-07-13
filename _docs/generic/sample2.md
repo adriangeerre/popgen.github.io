@@ -12,3 +12,8 @@ Inserted picture: ![Mandala](/_docs/images/crypt.jpg)
 
 Accesible picture: [Mandala](/_docs/images/crypt.jpg)
 
+
+Inserted picture: ![Mandala](crypt.jpg)
+
+Accesible picture: [Mandala](crypt.jpg)
+
