@@ -8,6 +8,14 @@ product: Generic
 
 This is the English Sample 1 page.blah blah
 
+```python
+def function(x):
+    if x == True:
+        print('Hello World!')
+    else:
+	print('Goodbye World?')
+```
+
 ```java
 public class EnhancedFor
 {
