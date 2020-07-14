@@ -9,3 +9,6 @@ Sections:
  - GWAS
  - Heritability
 
+Template taken from:
+
+https://github.com/tomjohnson1492

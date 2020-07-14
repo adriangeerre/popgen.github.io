@@ -1,17 +1,4 @@
-.highlight {
-  white-space: pre;
-  overflow: auto;
-  word-wrap: normal; /* horizontal scrolling */
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  padding: 15px;
-  padding-left: 10px;
-  background: #f0f0f0;
-  color: #000000;
-}
-
-/*.highlight  { background: #e3dede; }*/
+.highlight  { background: #ffffff; }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
