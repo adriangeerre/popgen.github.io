@@ -8,19 +8,20 @@ tags: [PopGen1]
 
 <p><strong>Test - Insert an image</strong></p>
 
-Inserted picture: ![Mandala](/_docs/images/crypt.jpg)
+<figure>
+    <a href="http://adriangeerre.github.io/popgen.github.io/assets/images/crypt.jpg"><img src="http://adriangeerre.github.io/popgen.github.io/assets/images/crypt.jpg"></a>
+    <figcaption>Figure 1: Just a company logo.</figcaption>
+</figure>
 
-Accesible picture: [Mandala](/_docs/images/crypt.jpg)
+<!--<img src="http://adriangeerre.github.io/popgen.github.io/assets/images/crypt.jpg">-->
 
-|
+<p><strong>Test - Insert a formula</strong></p>
 
-Inserted picture: ![Mandala](images/crypt.jpg)
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
-Accesible picture: [Mandala](images/crypt.jpg)
+<img src="https://bit.ly/32quTWj" align="center" border="0" alt="y =  \alpha +  \beta * x" width="120" height="25" />   <!--http://www.sciweavers.org/free-online-latex-equation-editor-->
 
-|
 
-Inserted picture: ![Mandala](crypt.jpg)
 
-Accesible picture: [Mandala](crypt.jpg)
+
 

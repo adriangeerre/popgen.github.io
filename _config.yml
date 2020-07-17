@@ -3,19 +3,15 @@ language: english
 # Link to home
 url: /
 
-# link to github repo
-#github_editme_path: https://github.com/tomjohnson1492/documentation-theme-jekyll-next-version/blob/gh-pages/
-
-image_path: docs/images/
+BASE_PATH: adriangeerre.github.io/popgen.github.io
+image_path: /assets/images
 port: 4000
 highlighter: rouge
 
 highlighting_css: syntax # Select the theme for the code
 # options: "monokai" (black), "syntax" (white)
-navbar_style: lighttheme-agr  # Select the theme of the website
+navbar_style: darktheme #lighttheme-agr  # Select the theme of the website
 # navbar_logo: docs/images/samplelogo.png
-
-image_path: /docs/images/
 
 markdown: kramdown
 kramdown:
@@ -81,6 +77,9 @@ exclude:
   - Gemfile.lock
   - index_de.md
   - index_ja.md
+  - README.md
+  - .gitignore
+  - .DS_Store
 
 gems:
   - algoliasearch-jekyll
@@ -91,8 +90,8 @@ gems:
 uistring:
     title: Population Genetics # Displays as site title on top nav bar and on site metadata
     description: Course on different topics of population genetics  # Displays as site description meta
-    search_placeholder_global: Global Search ...
-    search_placeholder_product: Product Search ...
+    #search_placeholder_global: Global Search ...
+    #search_placeholder_product: Product Search ...
     minitoc_title: Table of Contents
     tags_title: Tags
     github_edit_button_text: Edit me

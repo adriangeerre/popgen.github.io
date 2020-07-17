@@ -6,7 +6,9 @@ tags: [getting-started, formatting]
 product: Generic
 ---
 
-<p><strong>Test of post</strong></p>
+## Test of post
+
+<!--<p><strong>Test of post</strong></p>-->
 
 Add a table:
 
@@ -15,7 +17,9 @@ Add a table:
 | row 1 | row 1 |
 | row 2 | row 2 |
 
-<p><strong>Chunks with theme</strong></p>
+## Chunks with theme
+
+<!--<p><strong>Chunks with theme</strong></p>-->
 
 Python chunk:
 
@@ -43,10 +47,13 @@ library(tidyverse)
 x <- read.csv('/home/agomez/dataset.csv')
 x %>% filter(level == 'High')
 ```
-<p><strong>Highlight chunks</strong></p>
+
+## Highlight chunks
+
+<!--<p><strong>Highlight chunks</strong></p>-->
 
 <p>Python</p>
-{% highlight bash %}
+{% highlight python %}
 def function(x):
     if x == True:
         print('Hello World!')
