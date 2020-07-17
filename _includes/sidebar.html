@@ -22,7 +22,7 @@
 <ul id="docnavsidebar" class="docnav">
     {% for folder in sidebar.folders %}
     <li class="level1"><a href="#">{{ folder.title }}</a>
-        <ul style="display:list-item;">
+        <ul style="display:none;">
             {% for folderitem in folder.folderitems %}
 
             {% if folderitem.title %}
