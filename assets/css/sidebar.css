@@ -83,12 +83,12 @@ li.level1.open > ul > li.level1items.open > a:before, li.level2.open > ul > li.l
     font-size: 18px;
     font-weight: bold;
     color: #333333;
-    display: list-item;
+    display: block;
     padding-top: 60px;
 }
 
 hr.resourceSeparator {
-    display: list-item;
+    display: block;
     margin-top: 1.7em;
     margin-bottom: 1.7em;
     margin-left: 0px;
