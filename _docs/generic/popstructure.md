@@ -3,7 +3,7 @@ title: Population Structure
 permalink: popstructure.html
 sidebar: generic
 #tags: [getting-started, formatting]
-#product: Generic
+product: Generic
 ---
 
 ## Test of post
