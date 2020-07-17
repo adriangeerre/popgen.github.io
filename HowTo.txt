@@ -1,0 +1,70 @@
+This file contain the explanation on how to include content and modify a few parameters of the website:
+
+# Include content:
+
+The content is included in the folder _docs. More exactly into the folder generic which contain .md files or markdown files. These files are coded in html and they start with a header (e.g.,):
+
+# ---
+# title: Content 1
+# permalink: content1.html
+# sidebar: generic
+# tags: [getting-started, formatting]
+# product: Generic
+# ---
+
+The title will give a name to be shown in the sidebar. The permalink is the link to the file, in points to itself.If the permalink is modified to a non existing file it will return a 404 error when trying to access it from the sidebar. The other three tags are related with the template.
+
+Different content can be add into the page:
+
+    1. Table
+	
+	| Col1 | Col2 |
+	|----|-----|
+	| row 1 | row 1 |
+	| row 2 | row 2 |
+
+    2. Chunks of code using the theme defined
+
+	```python
+	def function(x):
+	    if x == True:
+	        print('Hello World!')
+	    else:
+		print('Goodbye World?')
+	```
+
+	```bash
+	for i in `seq 1 10`
+	do
+	    echo Hello world $i
+	done
+	```
+
+	```r
+	library(tidyverse)
+	x <- read.csv('/home/agomez/dataset.csv')
+	x %>% filter(level == 'High')
+	```
+
+    3. Chunks of code with the default highlighter
+
+	{% highlight python %}
+	def function(x):
+	    if x == True:
+	        print('Hello World!')
+	    else:
+		print('Goodbye World?')
+	{% endhighlight %}
+
+	{% highlight bash %}
+	for i in `seq 1 10`
+	do
+	    echo Hello world $i
+	done
+	{% endhighlight %}
+
+	{% highlight R %}
+	library(tidyverse)
+	x <- read.csv('/home/agomez/dataset.csv')
+	x %>% filter(level == 'High')
+	{% endhighlight %}

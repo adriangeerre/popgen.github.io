@@ -53,7 +53,7 @@ x %>% filter(level == 'High')
 <!--<p><strong>Highlight chunks</strong></p>-->
 
 <p>Python</p>
-{% highlight bash %}
+{% highlight python %}
 def function(x):
     if x == True:
         print('Hello World!')
