@@ -10,7 +10,7 @@ highlighter: rouge
 
 highlighting_css: syntax # Select the theme for the code
 # options: "monokai" (black), "syntax" (white)
-navbar_style: darktheme #lighttheme-agr  # Select the theme of the website
+navbar_style: lighttheme-agr  # Select the theme of the website
 # navbar_logo: docs/images/samplelogo.png
 
 markdown: kramdown
@@ -92,11 +92,11 @@ uistring:
     description: Course on different topics of population genetics  # Displays as site description meta
     #search_placeholder_global: Global Search ...
     #search_placeholder_product: Product Search ...
-    minitoc_title: Table of Contents
+    #minitoc_title: Table of Contents
     tags_title: Tags
-    github_edit_button_text: Edit me
-    search_results_page_title: Search results
-    search_no_results_found: No results found.
+    #github_edit_button_text: Edit me
+    #search_results_page_title: Search results
+    #search_no_results_found: No results found.
     tag_terms:
       product: Product
       page: Page
