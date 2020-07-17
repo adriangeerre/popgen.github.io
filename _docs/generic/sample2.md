@@ -19,4 +19,9 @@ tags: [PopGen1]
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
-<img src="https://bit.ly/32quTWj" align="center" border="0" alt="y =  \alpha +  \beta * x" width="112" height="19" />   <!--http://www.sciweavers.org/free-online-latex-equation-editor-->
+<img src="https://bit.ly/32quTWj" align="center" border="0" alt="y =  \alpha +  \beta * x" width="120" height="25" />   <!--http://www.sciweavers.org/free-online-latex-equation-editor-->
+
+
+
+
+
