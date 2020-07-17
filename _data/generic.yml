@@ -4,34 +4,14 @@ owner: adriangeerre
 ## Keep this commented out content because it shows the YAML model for the sidebar.
 
 folders:
-- title: Course Description
+- title: Phylosophy
   url: /index.html 
-  folderitems:
-  - title: Population Structure
-    url: /sample1.html
 
-  - title: Demography
-    url: /sample2.html
+- title: Population Structure
+  url: /popstructure.html
 
-    subfolders:
-    - title: Selection
-      subfolderitems:
-
-      - title: Selection sub1
-        url: /sublevel1.html
-
-        subsubfolders:
-        - title: Sub-Selection
-          subsubfolderitems:
-
-          - title: Sub-sublevel 1
-            url: /sublevel1.html
-
-- title: Second Level
-  folderitems:
-
-  - title: Thing 1
-    url: /thing1.html
+- title: Demography 
+  url: /demography.html
 
 ###########################
 
