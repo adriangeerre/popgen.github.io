@@ -38,7 +38,7 @@
             {% for subfolder in folderitem.subfolders %}
 
             <li class="level2"><a class="subfoldersTitle" href="#">{{ subfolder.title }}</a>
-                <ul style="display:none;">
+                <ul style="display:list-item;">
                     {% for subfolderitem in subfolder.subfolderitems %}
 
                     {% if subfolderitem.title %}
