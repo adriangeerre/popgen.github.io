@@ -12,7 +12,7 @@ The content is included in the folder _docs. More exactly into the folder generi
 # product: Generic
 # ---
 
-The title will give a name to be shown in the sidebar. The permalink is the link to the file, in points to itself.If the permalink is modified to a non existing file it will return a 404 error when trying to access it from the sidebar. The other three tags are related with the template.
+This lines are commented so the file is treated as a normal txt file. The title will give a name to be shown in the sidebar. The permalink is the link to the file, in points to itself.If the permalink is modified to a non existing file it will return a 404 error when trying to access it from the sidebar. The other three tags are related with the template.
 
 Different content can be add into the page:
 
@@ -23,7 +23,7 @@ Different content can be add into the page:
 	| row 1 | row 1 |
 	| row 2 | row 2 |
 
-    2. Chunks of code using the theme defined
+    2. Chunks of code using the theme defined (Visible inside of github and the website)
 
 	```python
 	def function(x):
@@ -46,7 +46,7 @@ Different content can be add into the page:
 	x %>% filter(level == 'High')
 	```
 
-    3. Chunks of code with the default highlighter
+    3. Chunks of code with the default highlighter (Visible only in the website)
 
 	{% highlight python %}
 	def function(x):
@@ -68,3 +68,46 @@ Different content can be add into the page:
 	x <- read.csv('/home/agomez/dataset.csv')
 	x %>% filter(level == 'High')
 	{% endhighlight %}
+
+    4. Images (located in /assets/images)
+
+	<figure>
+	    <a href="http://adriangeerre.github.io/popgen.github.io/assets/images/crypt.jpg"><img src="http://adriangeerre.github.io/popgen.github.io/assets/images/crypt.jpg"></a>
+	    <figcaption>Figure 1: Just a company logo.</figcaption>
+	</figure>
+
+    5. Formulas (Created with online website that introduce the image)
+
+	5.1 (Visible only in the website)
+		<img src="https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
+	5.2 (Visible in github and website) -> Create with www.sciweavers.org/free-online-latex-equation-editor
+		<img src="https://bit.ly/32quTWj" align="center" border="0" alt="y =  \alpha +  \beta * x" width="120" height="25" />
+
+    6. Links to URLs
+
+	[Google](http://google.com)
+
+Furthermore, the content can include a 'Table of content' which is created automatically when using the section definition (f.e.,):
+
+	'## Section 1' or '### Section 1'
+
+
+# Include the content in the sidebar:
+
+Once we have place the markdown file in /_docs/generic/ the file has to be included in the structure shown in the website. The files responsible of that are located in _data. More exactly, the file called generic.yml (YAML file) containt the definition we need for the documents we want to show. It contain the following:
+
+    1. sidebarTitle: The name of the sidebar, this will modify the name shown on top of the sidebar in the website
+
+    2. folders: It contains the structure to be shown, is the first level. The "- title" section below it produce the first level entries. The "url:" link to the file in the _docs folder. The name of the url is name.html instead of name.md but is pointing to the file we created (the .md file).
+
+    3. subfolder: Is the second level, just below folder and will show the structure when clickin on the first level.
+
+    4. related_resources_title: Section shown after the list of entries with related resources, if erased from the file the section will disappear. Here the url is pointing to github, it could point to other websites.
+
+
+# Modify the appearance of the website:
+
+The appearance can be modify in the _config.yml in the root folder. In this case we can change the theme of the website and the theme of the code highlighter. Moreover we can modify the theme or create a new one. The files can be found in /assets/css and can be modify directly or copied and modified into a new/similar theme.
+
+ 
