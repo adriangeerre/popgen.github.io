@@ -14,3 +14,9 @@ tags: [PopGen1]
 </figure>
 
 <!--<img src="http://adriangeerre.github.io/popgen.github.io/assets/images/crypt.jpg">-->
+
+<p><strong>Test - Insert a formula</strong></p>
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
+<img src="https://bit.ly/32quTWj" align="center" border="0" alt="y =  \alpha +  \beta * x" width="112" height="19" />   <!--http://www.sciweavers.org/free-online-latex-equation-editor-->
