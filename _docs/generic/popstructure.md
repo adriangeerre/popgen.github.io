@@ -1,9 +1,9 @@
 ---
-title: Sample 1
-permalink: sample1.html
+title: Population Structure
+permalink: popstructure.html
 sidebar: generic
-tags: [getting-started, formatting]
-product: Generic
+#tags: [getting-started, formatting]
+#product: Generic
 ---
 
 ## Test of post

@@ -1,6 +1,6 @@
 ---
-title: Sample2 topic
-permalink: sample2.html
+title: Demography
+permalink: demography.html
 sidebar: generic
 tags: [PopGen1]
 #product: Generic
