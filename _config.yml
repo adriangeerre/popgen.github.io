@@ -92,7 +92,7 @@ uistring:
     description: Course on different topics of population genetics  # Displays as site description meta
     #search_placeholder_global: Global Search ...
     #search_placeholder_product: Product Search ...
-    #minitoc_title: Table of Contents
+    minitoc_title: Table of Contents
     tags_title: Tags
     #github_edit_button_text: Edit me
     #search_results_page_title: Search results
