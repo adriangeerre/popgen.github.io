@@ -8,6 +8,9 @@ folders:
   url: /index.html 
 
   folderitems:
+  - title: Basic Concepts
+    url: /basic-concepts.html
+
   - title: Population Structure
     url: /popstructure.html
 
@@ -27,3 +30,6 @@ related_resources_list:
 
 - title: Github
   url: http://github.com
+
+- title: Graham Coop
+  url: https://github.com/cooplab/popgen-notes/blob/master/release_popgen_notes.pdf
