@@ -23,7 +23,7 @@ SNPs affecting evolution, affecting the genetic material of gametes, occur durin
 
 To start, a basic analysis applied to the populations is to measure the allele frequencies. To make it simple, first we are going to work with a di-allelic model. In other words, SNPs are going to be defined by a dual option even though there are 3 more potential nucleotides for a position. Moreover, mutations are not likely to occur and the most common situation is to determine a di-allelic behaviour of SNPs.
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;F_A=\frac{N_A}{2N}&space;and&space;F_a=\frac{N_a}{2N}" title="\Large F_A=\frac{N_A}{2N} and F_a=\frac{N_a}{2N}" />
+<img src="https://latex.codecogs.com/svg.latex?&space;F_A=\frac{N_A}{2N}&space;and&space;F_a=\frac{N_a}{2N}" title="F_A=\frac{N_A}{2N} and F_a=\frac{N_a}{2N}" align="middle"/>
 
 The formula contain various terms:
 
