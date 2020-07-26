@@ -23,6 +23,7 @@ ind 5:  A C C A C G A T A C T A C
 <p>&nbsp;</p>
 
 **How do SNPs occur?**
+
 SNPs affecting evolution, affecting the genetic material of gametes, occur during the division and recombination of the chromosomes. The replication of the DNA is not perfect and sometimes the process fails including errors. Most of the errors are corrected but a few of them remain. The errors that raise in a new individual are called mutations and the effect of them could be deletereous, neutral or advantageous (More information in the section _Selection_).
 
 To start, a basic analysis applied to the populations is to measure the allele frequencies. To make it simple, first we are going to work with a di-allelic model. In other words, SNPs are going to be defined by a dual option even though there are 3 more potential nucleotides for a position. Moreover, mutations are not likely to occur and the most common situation is to determine a di-allelic behaviour of SNPs.
