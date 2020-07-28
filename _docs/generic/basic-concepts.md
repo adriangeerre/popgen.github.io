@@ -32,7 +32,7 @@ To start, a basic analysis applied to the populations is to measure the allele f
 
 <p>&nbsp;</p>
 
-<center><img src="https://latex.codecogs.com/svg.latex?f_A=\frac{N_A}{2N}&space;\quad&space;and&space;\quad&space;f_a=\frac{N_a}{2N}" title="Allele frequency (di-allelic model)"/></center>
+<center><img src="https://latex.codecogs.com/svg.latex?f_A=\frac{N_A}{2N}&space;\quad&space;f_a=\frac{N_a}{2N}" title="Allele frequency (di-allelic model)"/></center>
 
 <p>&nbsp;</p>
 
