@@ -26,11 +26,13 @@ ind 5:  A C C A C G A T A C T A C
 
 SNPs affecting evolution, affecting the genetic material of gametes, occur during the division and recombination of the chromosomes. The replication of the DNA is not perfect and sometimes the process fails including errors. Most of the errors are corrected but a few of them remain. The errors that raise in a new individual are called mutations and the effect of them could be deletereous, neutral or advantageous (More information in the section _Selection_).
 
+**Allele and Genotype frequencies**
+
 To start, a basic analysis applied to the populations is to measure the allele frequencies. To make it simple, first we are going to work with a di-allelic model. In other words, SNPs are going to be defined by a dual option even though there are 3 more potential nucleotides for a position. Moreover, mutations are not likely to occur and the most common situation is to determine a di-allelic behaviour of SNPs.
 
 <p>&nbsp;</p>
 
-<center><img src="https://latex.codecogs.com/svg.latex?F_A=\frac{N_A}{2N}&space;\quad&space;and&space;\quad&space;F_a=\frac{N_a}{2N}" title="Allele frequency (di-allelic model)"/></center>
+<center><img src="https://latex.codecogs.com/svg.latex?f_A=\frac{N_A}{2N}&space;\quad&space;and&space;\quad&space;f_a=\frac{N_a}{2N}" title="Allele frequency (di-allelic model)"/></center>
 
 <p>&nbsp;</p>
 
@@ -46,3 +48,14 @@ Moreover, the sum of both frequencies is equal to 1. For example:
 
 The position _e_ in the example above (Diagram 1) contains 1 T's and 4 C's. The frequencies in the haploid population are 0.20 (=1/5) and 0.80 (=4/5). In the position _i_ we have 0.60 and 0.40 for A and G, respectively.
 
+Following, a second measurement is the genotype frecuency in a population. Assuming a di-allelic model and diploid individuals we would have 3 different possible genotypes: AA,Aa and aa. There are two _homozygote_ genotypes (AA and aa) wheres a _heterozygote_ genotype. Each genotype has a frequency in the population that can be computed using:
+
+<p>&nbsp;</p>
+
+<center><img src="https://latex.codecogs.com/svg.latex?f_{AA}=\frac{N_{AA}}{N}&space;\quad&space;f_{Aa}=\frac{N_{Aa}}{N}&space;\quad&space;f_{aa}=\frac{N_{aa}}{N}" title="Genotype frequency (di-allelic model)"/></center>
+
+<p>&nbsp;</p>
+
+In the formula, the number of individual for a given genotype (Nxx) is divided by the total number of individuals (N) instead by the number of genes (2N) in the previous formula.
+
+<p>&nbsp;</p>
