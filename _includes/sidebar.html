@@ -1,3 +1,4 @@
+<!-- Add in the class the word 'open' to maintain the part of the sidebar open. This is given by the function in the last line of this code -->
 
 {% assign sidebar = site.data[page.sidebar] %}
 <div class="mydocsidebar">
@@ -21,7 +22,7 @@
 <!-- end search bar -->
 <ul id="docnavsidebar" class="docnav">
     {% for folder in sidebar.folders %}
-    <li class="level1"><a href="#">{{ folder.title }}</a>
+    <li class="level1 open"><a href="#">{{ folder.title }}</a>
         <ul style="display:none">
             {% for folderitem in folder.folderitems %}
 
