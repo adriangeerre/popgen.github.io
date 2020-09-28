@@ -30,7 +30,7 @@ The admixture can be estimated using variants in respect to a reference genome. 
 
 The [manual](https://dalexander.github.io/admixture/admixture-manual.pdf) of _ADMIXTURE_ explains how to run the program. The software can work with three different inputs: **.bed**, **.ped** and **.geno** formats. The output is a space-delimited file know as the _Q estimates_. Also, we need to define the number of population expected (_K_). In our case, we know there are 26 different human-based populations but it the genome may be divided in a different number.
 
-
+<p>&nbsp;</p>
 
 **Choosing K**
 
@@ -46,8 +46,20 @@ for K in <range>; do admixture --cv <input> $K | tee log$K.out; done
 
 Seems easy, right? Run a For loop and select the minimum error value. But, what if we do not know the maximum an minimum values? For example, our data is made out of 26 populations, maybe the real number of populations is 3 but it could also be 50. We can not use intuition to define the range but we cannot run 50 models for masive data. In order to get a hint on the possible range we will use **Principal Components Analysis** (PCA).
 
+<p>&nbsp;</p>
+
 **Install BiocManager in R**
 
+{% highlight R %}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install() 	# Push an update
+{% endhighlight %}
+
 After having the package manager for biological libraries, BiocManager, we can install the packages required for our analysis.
+
+{% highlight R %}
+BiocManager::install("SNPRelate")
+{% endhighlight %}
 
 This command should install the library SNPRelate and its dependecies.
