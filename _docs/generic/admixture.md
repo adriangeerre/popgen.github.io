@@ -10,13 +10,9 @@ sidebar: generic
 
 In this section, we are going to use the [1000 genomes](https://www.internationalgenome.org/) data maintained by EMBL-EBI. As writen in the [NIH](https://www.genome.gov/27528684/1000-genomes-project) (National Human Genome Research Institute).
 
-<p>&nbsp;</p>
-
 ```
 The 1000 Genomes Project is a collaboration among research groups in the US, UK, and China and Germany to produce an extensive catalog of human genetic variation that will support future medical research studies. It will extend the data from the International HapMap Project [...] The genomes of over 1000 unidentified individuals from around the world will be sequenced using next generation sequencing technologies. The results of the study will be publicly accessible to researchers worldwide.
 ```
-
-<p>&nbsp;</p>
 
 We will use the dataset ***Phase 3*** (released in 2013) which consists of 26 human populations with a total 2504 individuals. The data can be downloaded in _VCF_ format, it is divided by chromosomes and stored in the [ftp site](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/). For didactical purpose, we will use the smallest human autosomal chromosome which is the **chr22** (files **_vcf.gz_** and **_vcf.gz.tbi_**). Please, acces the [ftp site](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/) and download the data. In case you have a bigger or better computer (e.g., a cluster) you can select and analyze the chromosome you prefer (be aware of adapting your code to your neccesities).
 
