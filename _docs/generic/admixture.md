@@ -45,3 +45,11 @@ for K in <range>; do admixture --cv <input> $K | tee log$K.out; done
 <p>&nbsp;</p>
 
 Seems easy, right? Run a For loop and select the minimum error value. But, what if we do not know the maximum an minimum values? For example, our data is made out of 26 populations, maybe the real number of populations is 3 but it could also be 50. We can not use intuition to define the range but we cannot run 50 models for masive data. In order to get a hint on the possible range we will use **Principal Components Analysis** (PCA).
+
+**Install BiocManager in R**
+
+
+After having the package manager for biological libraries, BiocManager, we can install the packages required for our analysis.
+
+
+This command should install the library _SNPRelate_ and its dependecies.
