@@ -54,7 +54,7 @@ Seems easy, right? Run a For loop and select the minimum error value. But, what 
 {% highlight R %}
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install()
+BiocManager::install() 	# Push an update
 {% endhighlight %}
 
 <p>&nbsp;</p>
@@ -64,7 +64,6 @@ After having the package manager for biological libraries, BiocManager, we can i
 <p>&nbsp;</p>
 
 {% highlight R %}
-library(BiocManager)
 BiocManager::install("SNPRelate")
 {% endhighlight %}
 
