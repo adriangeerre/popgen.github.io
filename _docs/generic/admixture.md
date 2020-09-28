@@ -36,13 +36,9 @@ The [manual](https://dalexander.github.io/admixture/admixture-manual.pdf) of _AD
 
 K is the number of populations inside our dataset and it is defined by the value of the cross-validation. A low cross-validation resembles the best K for our dataset. An easy way to define K is by running the model for the different values and compare their error. As the manual says:
 
-<p>&nbsp;</p>
-
 {% highlight Bash %}
 for K in <range>; do admixture --cv <input> $K | tee log$K.out; done
 {% endhighlight %}
-
-<p>&nbsp;</p>
 
 Seems easy, right? Run a For loop and select the minimum error value. But, what if we do not know the maximum an minimum values? For example, our data is made out of 26 populations, maybe the real number of populations is 3 but it could also be 50. We can not use intuition to define the range but we cannot run 50 models for masive data. In order to get a hint on the possible range we will use **Principal Components Analysis** (PCA).
 
@@ -63,3 +59,5 @@ BiocManager::install("SNPRelate")
 {% endhighlight %}
 
 This command should install the library SNPRelate and its dependecies.
+
+<p>&nbsp;</p>
