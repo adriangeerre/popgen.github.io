@@ -26,12 +26,18 @@ We will use the tool _Platypus_ from the University of Oxford ([Platypus](https:
 
 In other words, the steps to generate a VCF file from scratch are:
 
+<p>&nbsp;</p>
+
 	* Get sequences to align and reference sequence for aligment.
 	* Generate the SAM file with the alignment information of sequences against reference.
 	* Transform SAM to BAM file.
 	* Call the variants using the BAM file/s and the reference.
 
+<p>&nbsp;</p>
+
 For the second step, once we have the data, we will use _Samtools_. The source code of the software can be download from [Samtools](http://www.htslib.org/download/). The website shows how to build and install the software. For a pre-build software, the one we will use, we will download the packages from [Samtools Github page](https://github.com/samtools). More exactly, we will clone the repositories _htslib_ and _samtools_.
+
+<p>&nbsp;</p>
 
 In a linux environment:
 ```
@@ -41,9 +47,17 @@ cd /opt/tools
 git clone https://github.com/samtools/samtools.git
 export PATH=/opt/tools/samtools/bin:$PATH
 ```
+<p>&nbsp;</p>
 
-In order to download _Platypus_ we can follow the instructions in the [main website](https://www.rdm.ox.ac.uk/research/lunter-group/lunter-group/platypus-a-haplotype-based-variant-caller-for-next-generation-sequence-data). In the section _Quick links_ we can find the link to download the latest stable version.
+In order to download _Platypus_ we can follow the instructions in the [main website](https://www.rdm.ox.ac.uk/research/lunter-group/lunter-group/platypus-a-haplotype-based-variant-caller-for-next-generation-sequence-data). In the section _Quick links_ we can find the link to download the latest stable version. After downloading the file and into a linux enviroment, I install _Platypus_.
 
+<p>&nbsp;</p>
+
+```
+tar -xvzf platypus-latest.tgz
+cd Platypus_0.8.1
+```
+<p>&nbsp;</p>
 
 Basic usage:
 

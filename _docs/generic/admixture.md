@@ -10,9 +10,13 @@ sidebar: generic
 
 In this section, we are going to use the [1000 genomes](https://www.internationalgenome.org/) data maintained by EMBL-EBI. As writen in the [NIH](https://www.genome.gov/27528684/1000-genomes-project) (National Human Genome Research Institute).
 
+<p>&nbsp;</p>
+
 ```
 The 1000 Genomes Project is a collaboration among research groups in the US, UK, and China and Germany to produce an extensive catalog of human genetic variation that will support future medical research studies. It will extend the data from the International HapMap Project [...] The genomes of over 1000 unidentified individuals from around the world will be sequenced using next generation sequencing technologies. The results of the study will be publicly accessible to researchers worldwide.
 ```
+
+<p>&nbsp;</p>
 
 We will use the dataset ***Phase 3*** (released in 2013) which consists of 26 human populations with a total 2504 individuals. The data can be downloaded in _VCF_ format, it is divided by chromosomes and stored in the [ftp site](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/). For didactical purpose, we will use the smallest human autosomal chromosome which is the **chr22** (files **_vcf.gz_** and **_vcf.gz.tbi_**). Please, acces the [ftp site](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/) and download the data. In case you have a bigger or better computer (e.g., a cluster) you can select and analyze the chromosome you prefer (be aware of adapting your code to your neccesities).
 
@@ -32,8 +36,38 @@ The [manual](https://dalexander.github.io/admixture/admixture-manual.pdf) of _AD
 
 K is the number of populations inside our dataset and it is defined by the value of the cross-validation. A low cross-validation resembles the best K for our dataset. An easy way to define K is by running the model for the different values and compare their error. As the manual says:
 
+<p>&nbsp;</p>
+
 {% highlight Bash %}
 for K in <range>; do admixture --cv <input> $K | tee log$K.out; done
 {% endhighlight %}
 
+<p>&nbsp;</p>
+
 Seems easy, right? Run a For loop and select the minimum error value. But, what if we do not know the maximum an minimum values? For example, our data is made out of 26 populations, maybe the real number of populations is 3 but it could also be 50. We can not use intuition to define the range but we cannot run 50 models for masive data. In order to get a hint on the possible range we will use **Principal Components Analysis** (PCA).
+
+
+**Install BiocManager in R**
+
+<p>&nbsp;</p>
+
+{% highlight R %}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install()
+{% endhighlight %}
+
+<p>&nbsp;</p>
+
+After having the package manager for biological libraries, BiocManager, we can install the packages required for our analysis.
+
+<p>&nbsp;</p>
+
+{% highlight R %}
+library(BiocManager)
+BiocManager::install("SNPRelate")
+{% endhighlight %}
+
+<p>&nbsp;</p>
+
+This command should install the library _SNPRelate_ and its dependecies.
