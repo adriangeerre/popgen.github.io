@@ -67,6 +67,29 @@ Basic usage:
 
 
 
+**Install BiocManager in R**
+
+<p>&nbsp;</p>
+
+{% highlight R %}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install() 	# Push an update
+{% endhighlight %}
+
+<p>&nbsp;</p>
+
+After having the package manager for biological libraries, BiocManager, we can install the packages required for our analysis.
+
+<p>&nbsp;</p>
+
+{% highlight R %}
+BiocManager::install("SNPRelate")
+{% endhighlight %}
+
+<p>&nbsp;</p>
+
+This command should install the library _SNPRelate_ and its dependecies.
 
 
 
