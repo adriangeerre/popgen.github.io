@@ -48,8 +48,6 @@ Seems easy, right? Run a For loop and select the minimum error value. But, what 
 
 **Install BiocManager in R**
 
-
 After having the package manager for biological libraries, BiocManager, we can install the packages required for our analysis.
 
-
-This command should install the library _SNPRelate_ and its dependecies.
+This command should install the library SNPRelate and its dependecies.
