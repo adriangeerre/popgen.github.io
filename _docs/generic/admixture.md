@@ -51,11 +51,7 @@ Seems easy, right? Run a For loop and select the minimum error value. But, what 
 
 <p>&nbsp;</p>
 
-{% highlight R %}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install() 	# Push an update
-{% endhighlight %}
+
 
 <p>&nbsp;</p>
 
