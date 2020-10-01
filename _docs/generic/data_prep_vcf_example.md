@@ -8,7 +8,7 @@ tags: [PopGen1]
 
 ## Data download
 
-**Describe the data download**
+We will use the dataset ***Phase 3*** (released in 2013) which consists of around 26 human populations, 2504 individuals divided and 5 Superpopulations (Africa, America, East Asia, Europe and South Asia). The data can be downloaded in _VCF_ format, it is divided by chromosomes and stored in the [ftp site](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/). We will use the smallest human autosomal chromosome which is the **chr22** (files **_vcf.gz_** and **_vcf.gz.tbi_**).The data was downloaded from the [ftp site](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/) of 1000genomes.
 
 ## Genomic Data preparation
 
@@ -28,7 +28,7 @@ awk 'NR==1{print NF}' variants
 The total number of columns is 2513 but the 9 columns are information not related to the individuals. That give us a total of 2504 columns to select the data. I use a random generator to select randomly the individuals. Then, I select the columns and create final vcf file.
 
 {% highlight Bash %}
-pre_cols=`shuf -i 10-2513 -n 350 | sort -n`
+pre_cols=`shuf -i 10-2513 -n 300 | sort -n`
 cols=`echo $pre_cols | sed 's/ /,/g'`
 cut -f 1-9,$cols variants > pre_vcf
 cat header pre_vcf > chr22.phase3.vcf
