@@ -103,7 +103,7 @@ plot(pcs, pca_var, type = "b", col = "red", pch = c(16))
     <figcaption>Figure 1: Variance per PC. The first two PCs defined the largest amount.</figcaption>
 </figure>
 
-<img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png">
+<center><img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png"></center>
 
 The basic plot shows that the first two PCs contains the most variance (5.49%) while the rest contains a small percent of the variance. Given the results, we will plot the two first PCs. First, we match the sample id with the population and region. Then, we plot the two first PCs colored by region.
 
@@ -111,7 +111,7 @@ The basic plot shows that the first two PCs contains the most variance (5.49%) w
 
 **Admixture software**
 
-After running the admixture for the different values of _K_ here are out results of the cross-validation:
+After running the admixture for the different values of _K_ (it tooks a 3/4 hours in my computer), here are out results of the cross-validation:
 
 ```
 cat log*.out | grep CV
