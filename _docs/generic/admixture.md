@@ -64,8 +64,6 @@ This command should install the library SNPRelate and its dependecies.
 
 Once we have the package _SNPRelate_ installed in R, we can start analysing our genotype data of the chromosome 22. The first step is to load the libraries and transform our _VCF_ file into a binary version of it, a _GDS_ file. This process only needs to be run one time because it will produce a file that we will use to compute the PCA.
 
-<p>&nbsp;</p>
-
 {% highlight R %}
 # Load libraries
 library(tidyverse)
@@ -79,11 +77,7 @@ vcf_file <- "chr22.phase3.vcf.gz"
 snpgdsVCF2GDS(vcf_file, "chr22.phase3.gds", method="biallelic.only")
 {% endhighlight %}
 
-<p>&nbsp;</p>
-
 Following, we will load the metadata file and the recently created _GDS_ file. After that, we will run a first PCA and check the content of the output. 
-
-<p>&nbsp;</p>
 
 {% highlight R %}
 # Load data
@@ -95,20 +89,21 @@ pca <- snpgdsPCA(variants)
 summary(pca)
 {% endhighlight %}
 
-<p>&nbsp;</p>
-
-The output of the PCA is a list that contains the eigenvectors (or PCs) and eigenvalues, also, the id of the sample and the variance per PC. In order to plot the PCs, first, we need to check the variance explain by each PC individually.
-
-<p>&nbsp;</p>
+The output of the PCA is a list that contains the eigenvectors (or PCs) and eigenvalues, also, the id of the sample and the variance per PC. In order to plot the PCs, first, we need to check the variance explain by each PC individually. The easies way to check the variance is to plot them.
 
 {% highlight R %}
 # PCA variance
 pca_var <- pca$varprop[!is.nan(pca$varprop)] * 100 # It contains NAN because the variance is below the representable limit
 pcs <- seq(1, length(pca_var))
-plot(pcs, pca_var, type = "b", col = "red", pch = c(16)) # The first two PCs contains the most variance (2.32%)
+plot(pcs, pca_var, type = "b", col = "red", pch = c(16))
 {% endhighlight %}
 
-<p>&nbsp;</p>
+<figure>
+    <a href="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png"><img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png"></a>
+    <figcaption>Figure 1: Variance per PC. The first two PCs defined the largest amount.</figcaption>
+</figure>
+
+The basic plot shows that the first two PCs contains the most variance (5.49%) while the rest contains a small percent of the variance. Given the results, we will plot the two first PCs. First, we match the sample id with the population and region. Then, we plot the two first PCs colored by region.
 
 
 
