@@ -99,7 +99,7 @@ plot(pcs, pca_var, type = "b", col = "red", pch = c(16))
 {% endhighlight %}
 
 <figure>
-    <img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png" alt="PCA variance" style="width:80%">
+    <img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png" alt="PCA variance" style="width:90%">
     <figcaption>
     Figure 1: Variance per PC. The first two PCs defined the largest amount.
 	</figcaption>
