@@ -28,7 +28,7 @@ awk 'NR==1{print NF}' variants
 The total number of columns is 2513 but the 9 columns are information not related to the individuals. That give us a total of 2504 columns to select the data. I use a random generator to select randomly the individuals. Then, I select the columns and create final vcf file.
 
 {% highlight Bash %}
-pre_cols=`shuf -i 10-2513 -n 500 | sort -n`
+pre_cols=`shuf -i 10-2513 -n 350 | sort -n`
 cols=`echo $pre_cols | sed 's/ /,/g'`
 cut -f 1-9,$cols variants > pre_vcf
 cat header pre_vcf > chr22.phase3.vcf
