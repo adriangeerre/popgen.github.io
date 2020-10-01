@@ -98,7 +98,7 @@ pcs <- seq(1, length(pca_var))
 plot(pcs, pca_var, type = "b", col = "red", pch = c(16))
 {% endhighlight %}
 
-<figure class="left">
+<figure>
     <a href="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png"><img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png">
     </a>
     <figcaption>
@@ -106,7 +106,7 @@ plot(pcs, pca_var, type = "b", col = "red", pch = c(16))
 	</figcaption>
 </figure>
 
-<center><img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png"></center>
+<left><img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png"></left>
 
 The basic plot shows that the first two PCs contains the most variance (5.49%) while the rest contains a small percent of the variance. Given the results, we will plot the two first PCs. First, we match the sample id with the population and region. Then, we plot the two first PCs colored by region.
 
