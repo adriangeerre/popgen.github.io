@@ -98,9 +98,12 @@ pcs <- seq(1, length(pca_var))
 plot(pcs, pca_var, type = "b", col = "red", pch = c(16))
 {% endhighlight %}
 
-<figure>
-    <a href="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png"><img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png"></a>
-    <figcaption>Figure 1: Variance per PC. The first two PCs defined the largest amount.</figcaption>
+<figure class="left">
+    <a href="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png"><img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png">
+    </a>
+    <figcaption>
+    Figure 1: Variance per PC. The first two PCs defined the largest amount.
+	</figcaption>
 </figure>
 
 <center><img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png"></center>
