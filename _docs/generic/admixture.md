@@ -99,7 +99,7 @@ plot(pcs, pca_var, type = "b", col = "red", pch = c(16))
 {% endhighlight %}
 
 <figure>
-    <img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png" alt="PCA variance" style="width:90%">
+    <img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png" alt="PCA variance" style="width:100%">
     <figcaption>
     Figure 1: Variance per PC. The first two PCs defined the largest amount.
 	</figcaption>
@@ -107,9 +107,20 @@ plot(pcs, pca_var, type = "b", col = "red", pch = c(16))
 
 The basic plot shows that the first two PCs contains the most variance (5.49%) while the rest contains a small percent of the variance. Given the results, we will plot the two first PCs. First, we match the sample id with the population and region. Then, we plot the two first PCs colored by region.
 
+In order to run _ADMIXTURE_ we need to generate the correct input file. In this case we are going to use a _.bed_ file and the supporting file (_bim_ and _fam_). We can use the following code to generate the file in R.
 
+{% highlight R %}
+# GDS to BED to use in ADMIXTURE
+snpgdsGDS2BED(variants, "chr22.phase3.gds", sample.id = NULL)
+{% endhighlight %}
 
 **Admixture software**
+
+To compute the admixture between the population I followed the recomendation of the manual and compute a range of different K values. We expect to have 4 populations, meaning K equal to 5, were the population for America is not independent but a mixture of all the different populations. 
+
+{% highlight Bash %}
+for K in 1 2 3 4 5 6 7 8 9 10; do /home/agomez/programas/admixture/admixture_linux-1.3.0/admixture --cv chr22.phase3.gds.bed $K | tee log$K.out; done
+{% endhighlight %}
 
 After running the admixture for the different values of _K_ (it tooks a 3/4 hours in my computer), here are out results of the cross-validation:
 
@@ -125,4 +136,24 @@ CV error (K=7): 0.06770
 CV error (K=8): 0.06877
 ```
 
-As expected by the PCA, the lowest error (0.06569) is given for K equal to 5. However, this value is close to K equal to 4 or 6 but it may be an artifact of the small sample used for the tutorial.
+As expected by the PCA, the lowest error (0.06569) is given for K equal to 5 (4 populations). However, this value is close to K equal to 4 or 6 but it may be an artifact of the small sample used for the tutorial. The values of _Fst_ for K equal to 5 are:
+
+```
+Fst divergences between estimated populations: 
+	Pop0	Pop1	Pop2	Pop3	
+Pop0	
+Pop1	0.120	
+Pop2	0.125	0.191	
+Pop3	0.048	0.137	0.129	
+Pop4	0.080	0.131	0.161	0.110	
+```
+
+**Plot the Admixture plot**
+
+After running the admixture software and select the value of K. We can load the Q matrix in R and plot the results.
+
+
+
+
+
+<p>&nbsp;</p>
