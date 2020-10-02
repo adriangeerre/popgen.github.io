@@ -60,6 +60,8 @@ This command should install the library SNPRelate and its dependecies.
 
 <p>&nbsp;</p>
 
+
+
 **PCA**
 
 Once we have the package _SNPRelate_ installed in R, we can start analysing our genotype data of the chromosome 22. The first step is to load the libraries and transform our _VCF_ file into a binary version of it, a _GDS_ file. This process only needs to be run one time because it will produce a file that we will use to compute the PCA.
@@ -102,6 +104,8 @@ plot(pcs, pca_var, type = "b", col = "red", pch = c(16))
 
 The basic plot shows that the first two PCs contains the most variance (5.49%) while the rest contains a small percent of the variance. Given the results, we will plot the two first PCs. First, we match the sample id with the population and region. Then, we plot the two first PCs colored by region.
 
+<img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA.png" alt="PCA" style="width:100%">
+
 In order to run _ADMIXTURE_ we need to generate the correct input file. In this case we are going to use a _.bed_ file and the supporting file (_bim_ and _fam_). We can use the following code to generate the file in R.
 
 {% highlight R %}
@@ -109,12 +113,14 @@ In order to run _ADMIXTURE_ we need to generate the correct input file. In this 
 snpgdsGDS2BED(variants, "chr22.phase3.gds", sample.id = NULL)
 {% endhighlight %}
 
+
+
 **Admixture software**
 
 To compute the admixture between the population I followed the recomendation of the manual and compute a range of different K values. We expect to have 4 populations, meaning K equal to 5, were the population for America is not independent but a mixture of all the different populations. 
 
 {% highlight Bash %}
-for K in 1 2 3 4 5 6 7 8 9 10; do /home/agomez/programas/admixture/admixture_linux-1.3.0/admixture --cv chr22.phase3.gds.bed $K | tee log$K.out; done
+for K in 1 2 3 4 5 6 7 8 9 10; do admixture_linux-1.3.0/admixture --cv chr22.phase3.gds.bed $K | tee log$K.out; done
 {% endhighlight %}
 
 After running the admixture for the different values of _K_ (it tooks a 3/4 hours in my computer), here are out results of the cross-validation:
@@ -143,12 +149,19 @@ Pop3	0.048	0.137	0.129
 Pop4	0.080	0.131	0.161	0.110	
 ```
 
+
+
 **Plot the Admixture plot**
 
-After running the admixture software and select the value of K. We can load the Q matrix in R and plot the results.
+After running the admixture software and select the value of K. We can load the Q matrix in R and plot the results. The Q-matrix I used are available [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/admixture).
 
+{% highlight R %}
+# Q-matrix
+q_matrix <- read.table("chr22.phase3.gds.5.Q")
+ord <- q_matrix[order(q_matrix$V1, q_matrix$V2, q_matrix$V3, q_matrix$V4, q_matrix$V5),]
+admixture_plot <- barplot(t(as.matrix(ord)), space=c(0.2), col=rainbow(5), xlab="Individual", ylab="Ancestry", border=NA, las=2)
+{% endhighlight %}
 
-
-
+<img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/Admixture_plot.png" alt="Admixture for K=5" style="width:100%">
 
 <p>&nbsp;</p>
