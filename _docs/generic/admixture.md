@@ -141,13 +141,35 @@ As expected by the PCA, the lowest error (0.06569) is given for K equal to 5 (5 
 
 ```
 Fst divergences between estimated populations: 
-	Pop0	Pop1	Pop2	Pop3	
+
+	    Pop0	Pop1	Pop2	Pop3	
 Pop0	
 Pop1	0.120	
 Pop2	0.125	0.191	
 Pop3	0.048	0.137	0.129	
 Pop4	0.080	0.131	0.161	0.110	
 ```
+
+The _F-statistic_ or _Fst_, is the proportion of the total genetic variance contained in a subpopulation relative to the total genetic variance. Values range from 0 to 1. High _Fst_ implies a considerable degree of differentiation among populations. It can be estimated with:
+
+<p>&nbsp;</p>
+
+<center><img src="https://latex.codecogs.com/svg.latex?F_{st}=\frac{H_T - H_S}{H_T}" title="F-statistic estimation"/></center>
+
+<p>&nbsp;</p>
+
+where:
+
+<p>&nbsp;</p>
+
+<center><img src="https://latex.codecogs.com/svg.latex?H_T=\frac{n_T}{n_T - 1}(1 - \sum \bar{p}^2_i)&space;\quad&space;H_S=\frac{n_S}{n_S - 1}(1 - \sum p^2_i)" title="Allele frequency (di-allelic model)"/></center>
+
+<p>&nbsp;</p>
+
+Given the formulas, the first term _Ht_ is the expected heterozygosity in the total sample population, and _Hs_ is the average of the expected heterozygosity calculated from each sampled subpopulation (_nt_ is the sample size and _ns_ is the own sample size). Basically, the T stands for _total population_ and the S for _subpopulation_.
+
+Then, the _Fst_ matrix from the admixture of _K_ equal to 5 shows that the Pop0 and Pop3 are the closest followed by Pop0 and Pop4. On the other hand, the populations with the largest difference are Pop1 and Pop2. However, the values are close to 0 so we do not see a large diferentiation between populations.
+
 <p>&nbsp;</p>
 
 
@@ -165,5 +187,7 @@ admixture_plot <- barplot(t(as.matrix(ord)), space=c(0.2), col=rainbow(5), xlab=
 <img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/Admixture_plot.png" alt="Admixture for K=5" style="width:100%">
 
 The admixture plot shows 5 different sections. The first three sections (purple, blue and green) contain almost pure individuals. The last two (yellow and red) contain a remarkable amounf of individuals with variants from another regions. The yellow region, include the most admixture from other regions. The different regions cannot be defined from the admixture plot but we can expect that the yellow region is America, the red Africa and the other three the rest, similar to the PCA clustering.
+
+Finally, the package [starmie](https://github.com/sa-lee/starmie), from 2016, plot admixture with advanced options (similar to tidyverse).
 
 <p>&nbsp;</p>
