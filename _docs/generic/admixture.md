@@ -61,7 +61,6 @@ This command should install the library SNPRelate and its dependecies.
 <p>&nbsp;</p>
 
 
-
 **PCA**
 
 Once we have the package _SNPRelate_ installed in R, we can start analysing our genotype data of the chromosome 22. The first step is to load the libraries and transform our _VCF_ file into a binary version of it, a _GDS_ file. This process only needs to be run one time because it will produce a file that we will use to compute the PCA.
@@ -114,10 +113,9 @@ snpgdsGDS2BED(variants, "chr22.phase3.gds", sample.id = NULL)
 {% endhighlight %}
 
 
-
 **Admixture software**
 
-To compute the admixture between the population I followed the recomendation of the manual and compute a range of different K values. We expect to have 4 populations, meaning K equal to 5, were the population for America is not independent but a mixture of all the different populations. 
+To compute the admixture between the population I followed the recomendation of the manual and compute a range of different K values. We expect to have 4/5 populations, meaning K equal to 4/5, were the population for America is not independent but a mixture of all the different populations. 
 
 {% highlight Bash %}
 for K in 1 2 3 4 5 6 7 8 9 10; do admixture_linux-1.3.0/admixture --cv chr22.phase3.gds.bed $K | tee log$K.out; done
@@ -137,7 +135,7 @@ CV error (K=7): 0.06770
 CV error (K=8): 0.06877
 ```
 
-As expected by the PCA, the lowest error (0.06569) is given for K equal to 5 (4 populations). However, this value is close to K equal to 4 or 6 but it may be an artifact of the small sample used for the tutorial. The values of _Fst_ for K equal to 5 are:
+As expected by the PCA, the lowest error (0.06569) is given for K equal to 5 (5 populations). However, this value is close to K equal to 4 or 6 but it may be an artifact of the small sample used for the tutorial. The values of _Fst_ for K equal to 5 are:
 
 ```
 Fst divergences between estimated populations: 
@@ -150,18 +148,19 @@ Pop4	0.080	0.131	0.161	0.110
 ```
 
 
+**Admixture plot**
 
-**Plot the Admixture plot**
-
-After running the admixture software and select the value of K. We can load the Q matrix in R and plot the results. The Q-matrix I used are available [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/admixture).
+After running the admixture software and select the value of K. We can load the Q matrix in R and plot the results (as the Admixture manual defines). The Q-matrix I used are available [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/admixture).
 
 {% highlight R %}
 # Q-matrix
 q_matrix <- read.table("chr22.phase3.gds.5.Q")
-ord <- q_matrix[order(q_matrix$V1, q_matrix$V2, q_matrix$V3, q_matrix$V4, q_matrix$V5),]
-admixture_plot <- barplot(t(as.matrix(ord)), space=c(0.2), col=rainbow(5), xlab="Individual", ylab="Ancestry", border=NA, las=2)
+ord <- q_matrix[order(q_matrix$V1, q_matrix$V2, q_matrix$V3, q_matrix$V4, q_matrix$V5),] # Order min to max value
+admixture_plot <- barplot(t(as.matrix(ord)), space=c(0.2), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA, las=2)
 {% endhighlight %}
 
 <img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/Admixture_plot.png" alt="Admixture for K=5" style="width:100%">
+
+The admixture plot shows 5 different sections. The first three sections (purple, blue and green) contain almost pure individuals. The last two (yellow and red) contain a remarkable amounf of individuals with variants from another regions. The yellow region, include the most admixture from other regions. The different regions cannot be defined from the admixture plot but we can expect that the yellow region is America, the red Africa and the other three the rest, similar to the PCA clustering.
 
 <p>&nbsp;</p>
