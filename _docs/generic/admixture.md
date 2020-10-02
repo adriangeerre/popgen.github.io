@@ -112,8 +112,10 @@ In order to run _ADMIXTURE_ we need to generate the correct input file. In this 
 snpgdsGDS2BED(variants, "chr22.phase3.gds", sample.id = NULL)
 {% endhighlight %}
 
+<p>&nbsp;</p>
 
-**Admixture software**
+
+**Running Admixture**
 
 To compute the admixture between the population I followed the recomendation of the manual and compute a range of different K values. We expect to have 4/5 populations, meaning K equal to 4/5, were the population for America is not independent but a mixture of all the different populations. 
 
@@ -146,9 +148,10 @@ Pop2	0.125	0.191
 Pop3	0.048	0.137	0.129	
 Pop4	0.080	0.131	0.161	0.110	
 ```
+<p>&nbsp;</p>
 
 
-**Admixture plot**
+**Plotting Admixture**
 
 After running the admixture software and select the value of K. We can load the Q matrix in R and plot the results (as the Admixture manual defines). The Q-matrix I used are available [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/admixture).
 
