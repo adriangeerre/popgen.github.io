@@ -46,7 +46,17 @@ Finally, to download the data click on _Download_. The link is highlighted in th
 
 <p>&nbsp;</p>
 
-A second option to download the data is to go to the tab _Data access_ and use the external links. For example, in this case the data is stored inside _Amazon S3_. Following the url we can direct download the data to our computer. In relation to the data, the size of the downloaded file, compress with gunzip (.gz) is of 206 MB. The Illumina reads downloaded have a length of 36. 
+A second option to download the data is to go to the tab _Data access_ and use the external links. For example, in this case the data is stored inside _Amazon S3_. Following the url we can direct download the data to our computer. In relation to the data, the size of the downloaded file, compress with gunzip (.gz) is of 204.6 MB. The decompress file weights 479 MB. The downloaded file contain a total of 6.479.048 Illumina reads where all of them have a length of 36 bp. 
+
+**Available data**
+
+The data, together with the pictures, is available in the github of the website. Find the resources [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/mapping_reads).
+
+The data was decompress and divide in smaller pieces to reduce the size of the fasta file and allow Github to storage it.
+
+{% highlight Bash %}
+gzip -d SARS-CoV-2_exper-SRX9197062.fasta.gz
+{% endhighlight %}
 
 ## Analysis
 
