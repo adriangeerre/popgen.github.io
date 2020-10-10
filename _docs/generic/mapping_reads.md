@@ -74,3 +74,66 @@ cat SARS-CoV-2_exper-SRX9197062.fasta_part* > SARS-CoV-2_exper-SRX9197062.fasta
 
 **Explanation**
 
+.................
+
+<p>&nbsp;</p>
+
+**Software**
+
+Download the software _BWA_ from [here](bio-bwa.sourceforge.net). Place the file in the folder you prefer and run the following to decompress:
+
+{% highlight Bash %}
+bzip2 -d bwa-<version>.tar.bz2
+tar -xvf bwa-<version>.tar
+{% endhighlight %}
+
+That should create a folder called bwa-<version> were program is contained. Now, we should compile the program by running the following (extracted from [Github](https://github.com/lh3/bwa)):
+
+{% highlight Bash %}
+cd bwa-<version>
+bwa make
+{% endhighlight %}
+
+If everything works, a executable file called bwa would be created. Then, we can add the program folder into the path to quick access bwa by running `export PATH=$PATH:<path>/<to>/<bwa>` (temporal) or modifying the path by defining it inside the _.bashrc_ file.
+
+<p>&nbsp;</p>
+
+**Mapping**
+
+Once the program is installed, we need to do three steps:
+
+	1. Index the reference fasta sequence.
+	2. Find the coordinates of the input reads.
+	3. Map the reads against the reference sequence.
+
+For the first step we need to run the following:
+
+{% highlight Bash %}
+bwa index SARS-CoV-2-reference.fasta
+{% endhighlight %}
+
+This should takes a few seconds and should generate the following output:
+
+```
+SARS-CoV-2-reference.fasta.amb
+SARS-CoV-2-reference.fasta.ann
+SARS-CoV-2-reference.fasta.bwt
+SARS-CoV-2-reference.fasta.pac
+SARS-CoV-2-reference.fasta.sa
+```
+
+Once we have generated the database from the reference genome, we can compute the second step. Here we can define a few parameters in order to locate the reads, for example, number of gaps, extensions, deletions, among others. **We will keep all value in default** but I recommend to play around and check the different outputs. This process will generate a binary file with format _.sai_ that will be used in the final step, in my case it took 56 seconds.
+
+{% highlight Bash %}
+bwa aln SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.fasta > SARS-CoV-2_exper-SRX9197062.sai
+{% endhighlight %}
+
+Once we have located coordinates of the input reads, we can compute the final step. In this case, our reads are **single-end** and smaller than 100 bp (average: 36bp). Given the manual, we should run the _BWA-backtrack_ software with the subcomand _samse_ to generate a _SAM_ (Sequence Alignment/Map) file output.
+
+{% highlight Bash %}
+bwa samse SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.sai SARS-CoV-2_exper-SRX9197062.fasta
+{% endhighlight %}
+
+The output is a SAM file with around 919 MB weight and 6.5 million lines. It is recomendable to pipe the output into gzip to compress the file and avoid consuming extra storage (`bwa samse <files> | gzip -3`).
+
+
