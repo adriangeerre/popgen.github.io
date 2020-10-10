@@ -2,7 +2,7 @@
 title: Mapping reads
 permalink: mapping_reads.html
 sidebar: generic
-tags: [PopGen1]
+#tags: [PopGen1]
 #product: Generic
 ---
 
