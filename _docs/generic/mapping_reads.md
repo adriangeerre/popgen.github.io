@@ -12,6 +12,8 @@ tags: [PopGen1]
 
 Everybody knows about Covid-19, Coronavirus or SARS-CoV-2 (Severe acute respiratory syndrome coronavirus 2). The information of the consensus sequence can be found [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512). The Wuhan virus (Accession: NC_045512) contains around 29903 bp in a ss-RNA sequence. The reference genome (the first isolate virus) can be found in [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512). To download the reference DNA sequence click on _FASTA_ under the title. Once inside, you can click on _Send to_, select _Complete Record_, _File_ and format _FASTA_. Finally, click on create file and save as _SARS-CoV-2-reference.fasta_. All the information in NCBI for the virus can be access from [here](https://www.ncbi.nlm.nih.gov/sars-cov-2/).
 
+<p>&nbsp;</p>
+
 **Download data**
 
 To get _Illumina_ data can be found in [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) searching for _SARS-CoV-2_. In this case, I choose the accesion [SRX9197062](https://www.ncbi.nlm.nih.gov/sra/SRX9197062[accn]) because of didactical purposes. The short genome of the virus allows a wider vision and an easier computation than, for example, the human genome. The following image shows a screenshot of the accesion:
@@ -48,6 +50,8 @@ Finally, to download the data click on _Download_. The link is highlighted in th
 
 A second option to download the data is to go to the tab _Data access_ and use the external links. For example, in this case the data is stored inside _Amazon S3_. Following the url we can direct download the data to our computer. In relation to the data, the size of the downloaded file, compress with gunzip (.gz) is of 204.6 MB. The decompress file weights 479 MB. The downloaded file contain a total of 6.479.048 Illumina reads where all of them have a length of 36 bp. 
 
+<p>&nbsp;</p>
+
 **Available data**
 
 The data, together with the pictures, is available in the github of the website. Find the resources [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/mapping_reads).
@@ -56,6 +60,14 @@ The data was decompress and divide in smaller pieces to reduce the size of the f
 
 {% highlight Bash %}
 gzip -d SARS-CoV-2_exper-SRX9197062.fasta.gz
+wc -l SARS-CoV-2_exper-SRX9197062.fasta # Count the number of lines
+split -a 2 -d -l 1000000 SARS-CoV-2_exper-SRX9197062.fasta 'SARS-CoV-2_exper-SRX9197062.fasta_part'
+{% endhighlight %}
+
+The output were 13 files (part00 to part12, all under 50 MB) containing 1 million lines (500.000 reads) each. In order to re-create the original file, download all the files and inside of a linux/Mac terminal run:
+
+{% highlight Bash %}
+cat SARS-CoV-2_exper-SRX9197062.fasta_part* > SARS-CoV-2_exper-SRX9197062.fasta
 {% endhighlight %}
 
 ## Analysis
