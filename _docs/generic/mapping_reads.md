@@ -214,7 +214,7 @@ After running the three commands, we can load the files in _IGV_ to see the alig
 <p>&nbsp;</p>
 
 <figure>
-    <a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037"><img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png"></a>
+    <a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png"><img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png"></a>
     <figcaption>Figure 6: SARS-CoV-2 mapped reads against reference. Variant (T/C) located at position 3037.</figcaption>
 </figure>
 
