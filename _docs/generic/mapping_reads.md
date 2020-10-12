@@ -20,7 +20,9 @@ To get _Illumina_ data can be found in [NCBI SRA](https://www.ncbi.nlm.nih.gov/s
 
 <p>&nbsp;</p>
 
-<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/project_selected.png" alt="SARS-CoV-2 selected project" style="width:100%">
+<a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/project_selected.png">
+	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/project_selected.png" alt="SARS-CoV-2 selected project" style="width:100%">
+</a>
 
 <p>&nbsp;</p>
 
@@ -28,7 +30,9 @@ The picture shows the information related to the accession. For example, the num
 
 <p>&nbsp;</p>
 
-<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/run_of_project.png" alt="Project run" style="width:100%">
+<a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/run_of_project.png">
+	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/run_of_project.png" alt="Project run" style="width:100%">
+</a>
 
 <p>&nbsp;</p>
 
@@ -36,7 +40,9 @@ The run contains different tabs (Metadata, Analysis, Reads and Data Access). We 
 
 <p>&nbsp;</p>
 
-<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/reads_of_run.png" alt="Project reads" style="width:100%">
+<a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/reads_of_run.png">
+	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/reads_of_run.png" alt="Project reads" style="width:100%">
+</a>
 
 <p>&nbsp;</p>
 
@@ -44,7 +50,9 @@ Finally, to download the data click on _Download_. The link is highlighted in th
 
 <p>&nbsp;</p>
 
-<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/download_illumina.png" alt="Download Illumina reads" style="width:100%">
+<a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/download_illumina.png">
+	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/download_illumina.png" alt="Download Illumina reads" style="width:100%">
+</a>
 
 <p>&nbsp;</p>
 
@@ -215,10 +223,9 @@ After running the three commands, we can load the files in _IGV_ to see the alig
 
 <p>&nbsp;</p>
 
-<!--<figure>
-    <a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png"><img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png"></a>
-    <figcaption>Figure 6: SARS-CoV-2 mapped reads against reference. Variant (T/C) located at position 3037.</figcaption>
-</figure>-->
+<a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png">
+	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png" alt="IGV variant pos3037" style="width:100%">
+</a>
 
 CollectMultipleMetrics
 CollectInsertSizeMetrics
