@@ -10,7 +10,7 @@ sidebar: generic
 
 **Explanation**
 
-Everybody knows about Covid-19, Coronavirus or SARS-CoV-2 (Severe acute respiratory syndrome coronavirus 2). The information of the consensus sequence can be found [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512). The Wuhan virus (Accession: NC_045512) contains around 29903 bp in a ss-RNA sequence. The reference genome (the first isolate virus) can be found in [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512). To download the reference DNA sequence click on _FASTA_ under the title. Once inside, you can click on _Send to_, select _Complete Record_, _File_ and format _FASTA_. Finally, click on create file and save as _SARS-CoV-2-reference.fasta_. All the information in NCBI for the virus can be access from [here](https://www.ncbi.nlm.nih.gov/sars-cov-2/).
+Everybody knows about Covid-19, Coronavirus or SARS-CoV-2 (Severe acute respiratory syndrome coronavirus 2). The information of the consensus sequence can be found [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512). The Wuhan virus (Accession: NC_045512) contains around 29903 bp in a ss-RNA sequence. The reference genome (the first isolate virus) can be found in [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512). To download the reference DNA sequence click on _FASTA_ under the title. Once inside, you can click on _Send to_, select _Complete Record_, _File_ and format _FASTA_. Finally, click on create file and save as _SARS-CoV-2-reference.fasta_. Moreover, following the same procedure we can download the gene annotation for the reference genome. Click on _Send to_, select _Complete Record_, _File_ and format _GFF3_. Save the file with the name _SARS-CoV-2-reference.gff3_ All the information in NCBI for the virus can be access from [here](https://www.ncbi.nlm.nih.gov/sars-cov-2/).
 
 <p>&nbsp;</p>
 
@@ -183,7 +183,7 @@ The process took less than a minute. Now, we can run the quality control:
 
 {% highlight Bash %}
 java -jar picard.jar CollectWgsMetrics -h
-java -jar picard.jar CollectWgsMetrics -I SARS-CoV-2_exper-SRX9197062.sam -R SARS-CoV-2-reference.fasta -O SARS-CoV-2_exper-SRX9197062_quality-control.txt --INCLUDE_BQ_HISTOGRAM --READ_LENGTH 36
+java -jar picard.jar CollectWgsMetrics -I SARS-CoV-2_exper-SRX9197062_sorted.sam -R SARS-CoV-2-reference.fasta -O SARS-CoV-2_exper-SRX9197062_quality-control.txt --INCLUDE_BQ_HISTOGRAM --READ_LENGTH 36
 {% endhighlight %}
 
 It took a bit more than a minute to run. The ouput includes three sections: run options, metrics and histogram. ***The downloaded data from NCBI SRA has been curated previously so we have a mean coverage of 0 and a genome territory of 29903 bp***. The values in the section _##METRICS CLASS_ shows what I said.
@@ -194,10 +194,10 @@ It took a bit more than a minute to run. The ouput includes three sections: run 
 
 To visualize the mapped reads against the reference genome, we need to do two things:
 
-	1. Load our reference genome.
+	1. Load our reference genome and annotation.
 	2. Load our SAM file
 
-In order to do the first step, we need to go to _Genomes_ > _Load Genome from File_. Then, select the file _SARS-CoV-2-reference.fasta_ and load it. The upper part of the window should show the full genome with a value of 29 kb in the middle of the line. In the upper right corner we can modify the zoom. If you move the blue line to the maximum you would be able to see the nucleotides per position. I have to remark that we do not have the gene annotation file.
+In order to do the first step, we need to go to _Genomes_ > _Load Genome from File_. Then, select the file _SARS-CoV-2-reference.fasta_ and load it. The upper part of the window should show the full genome with a value of 29 kb in the middle of the line. In the upper right corner we can modify the zoom. If you move the blue line to the maximum you would be able to see the nucleotides per position. To load the gene annotation we can go to _File_ > _Load from File_ and select the file _SARS-CoV-2-reference.gff3_.
 
 For the second step, we first need to create an index file to load the _SAM_ file. We will use the software _Samtools_. The _SAM_ input have to be a gzip compress file with _bgzip_. After compressed, we will create the index.
 
@@ -207,4 +207,16 @@ samtools index SARS-CoV-2_exper-SRX9197062_sorted.sam.gz SARS-CoV-2_exper-SRX919
 bgzip -d SARS-CoV-2_exper-SRX9197062_sorted.sam.gz # Decompress to read in IGV
 {% endhighlight %}
 
-After running the three commands, we can load the files in _IGV_ to see the alignments. With _IGV_ started, go to _File_ > _Load from File_ and select _SARS-CoV-2_exper-SRX9197062_sorted.sam_. The wizard will tell you that the index file was not found and you can click _Go_ to create one. Click _Go_ and wait until finished and loaded, it may take several minutes. It will create a _.sai_ file that is the index for our _SAM_ file.
+After running the three commands, we can load the files in _IGV_ to see the alignments. With _IGV_ started, go to _File_ > _Load from File_ and select _SARS-CoV-2_exper-SRX9197062_sorted.sam_. The wizard will tell you that the index file was not found and you can click _Go_ to create one. Click _Go_ and wait until finished and loaded, it may take several minutes. It will create a _.sai_ file that is the index for our _SAM_ file. Once loaded, 
+
+<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_full.png" alt="IGV full" style="width:100%">
+
+<p>&nbsp;</p>
+
+
+CollectMultipleMetrics
+CollectInsertSizeMetrics
+CollectAlignmentSummaryMetrics
+
+
+
