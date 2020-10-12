@@ -105,12 +105,14 @@ The software we are going to use in the thirs section are ***Samtools*** and ***
 {% highlight Bash %}
 bzip2 -d samtools-<version>.tar.bz2
 tar -xvf samtools-<version>.tar
-cd samtools-<version>
+rm samtool-<version>.tar
+cd samtools-<version>    # and similarly for bcftools and htslib
+./configure --prefix=<path>
 make
+make install
 {% endhighlight %}
 
-After compiling the software, if everything runs without errors, the executable _samtools_ will be inside the folder. Add it to the path as explained before for quick access. 
-Also from the Broad Institute, the Integrative Genomic Viewer (_IGV_) software is one of the most common tools to visualize our _SAM_/_BAM_ file. It is a desktop tool Access the link to download [IGV](https://software.broadinstitute.org/software/igv/download) in a zip file for Linux. 
+After compiling the software, if everything runs without errors, the executable _samtools_ will be inside the main folder. Inside of the _htslib_ folder we will found other tools. Add both to the path as explained before for quick access. Also from the Broad Institute, the Integrative Genomic Viewer (_IGV_) software is one of the most common tools to visualize our _SAM_/_BAM_ file. It is a desktop tool Access the link to download [IGV](https://software.broadinstitute.org/software/igv/download) in a zip file for Linux. 
 
 {% highlight Bash %}
 unzip IGV_Linux_2.8.10_WithJava.zip
@@ -184,7 +186,7 @@ java -jar picard.jar CollectWgsMetrics -h
 java -jar picard.jar CollectWgsMetrics -I SARS-CoV-2_exper-SRX9197062.sam -R SARS-CoV-2-reference.fasta -O SARS-CoV-2_exper-SRX9197062_quality-control.txt --INCLUDE_BQ_HISTOGRAM --READ_LENGTH 36
 {% endhighlight %}
 
-It took a bit more than a minute to run. The ouput includes three sections: run options, metrics and histogram. ***The downloaded data from NCBI SRA has been curated previously so we have a mean coverage of 0 and a genome territory of 29903 bp***. The values in the section _##METRICS CLASS__ shows what I said.
+It took a bit more than a minute to run. The ouput includes three sections: run options, metrics and histogram. ***The downloaded data from NCBI SRA has been curated previously so we have a mean coverage of 0 and a genome territory of 29903 bp***. The values in the section _##METRICS CLASS_ shows what I said.
 
 <p>&nbsp;</p>
 
@@ -197,14 +199,12 @@ To visualize the mapped reads against the reference genome, we need to do two th
 
 In order to do the first step, we need to go to _Genomes_ > _Load Genome from File_. Then, select the file _SARS-CoV-2-reference.fasta_ and load it. The upper part of the window should show the full genome with a value of 29 kb in the middle of the line. In the upper right corner we can modify the zoom. If you move the blue line to the maximum you would be able to see the nucleotides per position. I have to remark that we do not have the gene annotation file.
 
-For the second step, we first need to create an index file to load the _SAM_ file. We will use the software _Samtools_. 
+For the second step, we first need to create an index file to load the _SAM_ file. We will use the software _Samtools_. The _SAM_ input have to be a gzip compress file with _bgzip_. After compressed, we will create the index.
 
 {% highlight Bash %}
-
+bgzip SARS-CoV-2_exper-SRX9197062_sorted.sam
+samtools index SARS-CoV-2_exper-SRX9197062_sorted.sam.gz SARS-CoV-2_exper-SRX9197062_sorted.sam.bai
+bgzip -d SARS-CoV-2_exper-SRX9197062_sorted.sam.gz # Decompress to read in IGV
 {% endhighlight %}
 
-Now, we will create the index for our _SAM_ file.
-
-{% highlight Bash %}
-
-{% endhighlight %}
+After running the three commands, we can load the files in _IGV_ to see the alignments. With _IGV_ started, go to _File_ > _Load from File_ and select _SARS-CoV-2_exper-SRX9197062_sorted.sam_. The wizard will tell you that the index file was not found and you can click _Go_ to create one. Click _Go_ and wait until finished and loaded, it may take several minutes. It will create a _.sai_ file that is the index for our _SAM_ file.
