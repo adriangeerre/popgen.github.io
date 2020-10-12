@@ -209,14 +209,16 @@ bgzip -d SARS-CoV-2_exper-SRX9197062_sorted.sam.gz # Decompress to read in IGV
 
 After running the three commands, we can load the files in _IGV_ to see the alignments. With _IGV_ started, go to _File_ > _Load from File_ and select _SARS-CoV-2_exper-SRX9197062_sorted.sam_. The wizard will tell you that the index file was not found and you can click _Go_ to create one. Click _Go_ and wait until finished and loaded, it may take several minutes. It will create a _.sai_ file that is the index for our _SAM_ file. Once loaded, 
 
-<img href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_full.png" src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_full.png" alt="IGV full" style="width:100%">
+<a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_full.png">
+	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_full.png" alt="IGV full" style="width:100%">
+</a>
 
 <p>&nbsp;</p>
 
-<figure>
+<!--<figure>
     <a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png"><img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png"></a>
     <figcaption>Figure 6: SARS-CoV-2 mapped reads against reference. Variant (T/C) located at position 3037.</figcaption>
-</figure>
+</figure>-->
 
 CollectMultipleMetrics
 CollectInsertSizeMetrics
