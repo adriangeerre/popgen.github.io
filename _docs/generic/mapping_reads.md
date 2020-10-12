@@ -215,7 +215,7 @@ samtools index SARS-CoV-2_exper-SRX9197062_sorted.sam.gz SARS-CoV-2_exper-SRX919
 bgzip -d SARS-CoV-2_exper-SRX9197062_sorted.sam.gz # Decompress to read in IGV
 {% endhighlight %}
 
-After running the three commands, we can load the files in _IGV_ to see the alignments. With _IGV_ started, go to _File_ > _Load from File_ and select _SARS-CoV-2_exper-SRX9197062_sorted.sam_. The wizard will tell you that the index file was not found and you can click _Go_ to create one. Click _Go_ and wait until finished and loaded, it may take several minutes. It will create a _.sai_ file that is the index for our _SAM_ file. Once loaded, 
+After running the three commands, we can load the files in _IGV_ to see the alignments. With _IGV_ started, go to _File_ > _Load from File_ and select _SARS-CoV-2_exper-SRX9197062_sorted.sam_. The wizard will tell you that the index file was not found and you can click _Go_ to create one. Click _Go_ and wait until finished and loaded, it may take several minutes. It will create a _.sai_ file that is the index for our _SAM_ file. Once loaded you may be able to see something similar to the pictures. I said similar because the first picture shows the mapping of reads of the full genome with all the depth and coverage. The second picture shows the region to the left (position 3037 bp), which is marked in a red color and where we can find a variant (T instead of C).
 
 <a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_full.png">
 	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_full.png" alt="IGV full" style="width:100%">
@@ -227,9 +227,11 @@ After running the three commands, we can load the files in _IGV_ to see the alig
 	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png" alt="IGV variant pos3037" style="width:100%">
 </a>
 
-CollectMultipleMetrics
+<p>&nbsp;</p>
+
+<!--CollectMultipleMetrics
 CollectInsertSizeMetrics
-CollectAlignmentSummaryMetrics
+CollectAlignmentSummaryMetrics-->
 
 
 
