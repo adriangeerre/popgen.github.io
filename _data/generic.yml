@@ -25,10 +25,10 @@ folders:
         subfolderitems:
 
         - title: Mapping
-        url: /mapping_reads.html
+          url: /mapping_reads.html
 
         - title: Glossary
-        url: /glossary.html
+          url: /glossary.html
 
 ###########################
 
