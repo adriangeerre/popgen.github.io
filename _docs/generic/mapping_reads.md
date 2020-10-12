@@ -74,11 +74,13 @@ cat SARS-CoV-2_exper-SRX9197062.fasta_part* > SARS-CoV-2_exper-SRX9197062.fasta
 
 **Explanation**
 
-.................
+In this tutorial we are going to **map** _Illumina_ reads against a reference genome (without a reference we will _de novo_ assembly the genome). We are using reads comming from a Polymerase Chain Reaction (PCR) so we will have several times the same reads and also, reads that overlaps between them. The reference genome will be the template that will help us to place each reads in the proper location. Once we have our sample genome we can compare and define the differences (variants). The output of the mapping is a _SAM_ (Sequence Alignment/Map) file, read more about the format [here](http://samtools.github.io/hts-specs/SAMv1.pdf).
 
 <p>&nbsp;</p>
 
 **Software**
+
+There are many available softwares for mapping reads, for example, TopHat, MAQ or Bowtie. This [article](https://academic.oup.com/bioinformatics/article/28/24/3169/245777) list a large number of them. Different software may have different qualities or specializations depending the input. I do not have any especial interest in using the especific software selected for the tutorial but for a fast algorithm.
 
 Download the software _BWA_ from [here](bio-bwa.sourceforge.net). Place the file in the folder you prefer and run the following to decompress:
 
@@ -87,7 +89,7 @@ bzip2 -d bwa-<version>.tar.bz2
 tar -xvf bwa-<version>.tar
 {% endhighlight %}
 
-That should create a folder called bwa-_version_ were the program is contained. Now, we should compile the program by running the following (extracted from [Github](https://github.com/lh3/bwa)):
+That should create a folder called bwa-_version_ were the files to compile the program are contained. Now, we should compile the program by running the following (extracted from [Github](https://github.com/lh3/bwa)):
 
 {% highlight Bash %}
 cd bwa-<version>
@@ -128,7 +130,7 @@ Once we have generated the database from the reference genome, we can compute th
 bwa aln SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.fasta > SARS-CoV-2_exper-SRX9197062.sai
 {% endhighlight %}
 
-Once we have located coordinates of the input reads, we can compute the final step. In this case, our reads are **single-end** and smaller than 100 bp (average: 36bp). Given the manual, we should run the _BWA-backtrack_ software with the subcomand _samse_ to generate a _SAM_ (Sequence Alignment/Map) file output.
+Once we have located coordinates of the input reads, we can compute the final step. In this case, our reads are **single-end** and smaller than 100 bp (average: 36bp). Given the manual, we should run the _BWA-backtrack_ software with the subcomand _samse_ to generate a _SAM_ file output.
 
 {% highlight Bash %}
 bwa samse SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.sai SARS-CoV-2_exper-SRX9197062.fasta
@@ -137,3 +139,9 @@ bwa samse SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.sai SARS-CoV-2_
 The output is a SAM file with around 919 MB weight and 6.5 million lines. It is recomendable to pipe the output into gzip to compress the file and avoid consuming extra storage (`bwa samse <files> | gzip -3`).
 
 <p>&nbsp;</p>
+
+**Quality control**
+
+_Picard_
+
+It is important to check the quality of the mapping process. The percentage of mapped reads is a global indicator of the overall sequencing accuracy and of the presence of contaminating DNA
