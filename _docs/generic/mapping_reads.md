@@ -80,9 +80,9 @@ In this tutorial we are going to **map** _Illumina_ reads against a reference ge
 
 **Software**
 
-There are many available softwares for mapping reads, for example, TopHat, MAQ or Bowtie. This [article](https://academic.oup.com/bioinformatics/article/28/24/3169/245777) list a large number of them. Different software may have different qualities or specializations depending the input. I do not have any especial interest in using the especific software selected for the tutorial but for a fast algorithm.
+There are many available softwares for mapping reads, for example, TopHat, MAQ or Bowtie. This [article](https://academic.oup.com/bioinformatics/article/28/24/3169/245777) list a large number of them. Different software may have different qualities or specializations depending the input. I do not have any especial interest in using _BWA_ for the tutorial, as long as it has a fast algorithm.
 
-Download the software _BWA_ from [here](bio-bwa.sourceforge.net). Place the file in the folder you prefer and run the following to decompress:
+Download the software ***BWA*** from [here](bio-bwa.sourceforge.net). Place the file in the folder you prefer and run the following to decompress:
 
 {% highlight Bash %}
 bzip2 -d bwa-<version>.tar.bz2
@@ -97,6 +97,8 @@ bwa make
 {% endhighlight %}
 
 If everything works, a executable file called bwa would be created. Then, we can add the program folder into the path to quick access bwa by running `export PATH=$PATH:<path>/<to>/<bwa>` (temporal) or modifying the path by defining it inside the _.bashrc_ file.
+
+The second software we are going to use is ***Picard***. The software was develop by the Broad Institute and has an open-source license. _Picard_ contains a huge number of tools to manipulate high-throughput sequencing (HTS) data. In order to use the software we need _java-1.8_ installed. Read more and download from [here](https://broadinstitute.github.io/picard/) by clicking the first box of the right upper corner (Latest Jar Release).
 
 <p>&nbsp;</p>
 
@@ -142,6 +144,46 @@ The output is a SAM file with around 919 MB weight and 6.5 million lines. It is 
 
 **Quality control**
 
-_Picard_
+Once we have our _Illumina_ reads mapped against the reference, we need to check the quality of the mapping. The percentage of mapped reads is a global indicator of the overall sequencing accuracy and of the presence of contaminating DNA. We can see all the different available programs by running:
 
-It is important to check the quality of the mapping process. The percentage of mapped reads is a global indicator of the overall sequencing accuracy and of the presence of contaminating DNA
+{% highlight Bash %}
+java -jar picard.jar -h
+{% endhighlight %}
+
+In our case, we will use ***CollectWgsMetrics*** inside of the _Base Calling_ tools. We can run the flag _-h_ to see the required and optional arguments.
+
+Before the quality control, we need to sort the _SAM_ file.
+
+{% highlight Bash %}
+java -jar picard.jar SortSam -h
+java -jar picard.jar SortSam -I SARS-CoV-2_exper-SRX9197062.sam -O SARS-CoV-2_exper-SRX9197062_sorted.sam -SORT_ORDER coordinate
+{% endhighlight %}
+
+The process took less than a minute. Now, we can run the quality control:
+
+{% highlight Bash %}
+java -jar picard.jar CollectWgsMetrics -h
+java -jar picard.jar CollectWgsMetrics -I SARS-CoV-2_exper-SRX9197062.sam -R SARS-CoV-2-reference.fasta -O SARS-CoV-2_exper-SRX9197062_quality-control.txt --INCLUDE_BQ_HISTOGRAM --READ_LENGTH 36
+{% endhighlight %}
+
+It took a bit more than a minute to run. The ouput includes three sections: run options, metrics and histogram. ***The downloaded data from NCBI SRA has been curated previously so we have a mean coverage of 0 and a genome territory of 29903 bp***. The values in the section _##METRICS CLASS__ shows what I said.
+
+<p>&nbsp;</p>
+
+**Visualization**
+
+Also from the Broad Institute, the Integrative Genomic Viewer software is one of the most common tools to visualize our _SAM_/_BAM_ file. It is a desktop tool Access the link to download [IGV](https://software.broadinstitute.org/software/igv/download) in a zip file for Linux. 
+
+{% highlight Bash %}
+unzip IGV_Linux_2.8.10_WithJava.zip
+{% endhighlight %}
+
+The generated folder contains the pre-build software so there is no need to install. We can run _IGV_ executing `./igv.sh` inside of the folder using the terminal. The terminal will be capture by the software and a window would appear. Now we need to do two things:
+
+	1. Load our reference genome.
+	2. Load our SAM file
+
+In order to do the first step, we need to go to _Genomes_ > _Load Genome from File_. Then, select the file _SARS-CoV-2-reference.fasta_ and load it. The upper part of the window should show the full genome with a value of 29 kb in the middle of the line. In the upper right corner we can modify the zoom. If you move the blue line to the maximum you would be able to see the nucleotides per position. I have to remark that we do not have the gene annotation file.
+
+For the second step, we first need to create an index file to load the _SAM_ file. We will use the software __Samtools__. Download the software from [here](http://www.htslib.org/). Then run the following 
+
