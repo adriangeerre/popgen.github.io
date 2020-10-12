@@ -20,13 +20,15 @@ folders:
   - title: Admixture
     url: /admixture.html
 
-  - title: Mapping
-    url: /mapping_reads.html
+    subfolders: 
+      - title: Extra
+        subfolderitems:
 
-##########################
+        - title: Mapping
+        url: /mapping_reads.html
 
-  - title: Glossary
-    url: /glossary.html
+        - title: Glossary
+        url: /glossary.html
 
 ###########################
 
