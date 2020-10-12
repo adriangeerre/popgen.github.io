@@ -199,6 +199,9 @@ In order to do the first step, we need to go to _Genomes_ > _Load Genome from Fi
 
 For the second step, we first need to create an index file to load the _SAM_ file. We will use the software _Samtools_. 
 
+{% highlight Bash %}
+
+{% endhighlight %}
 
 Now, we will create the index for our _SAM_ file.
 
