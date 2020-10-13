@@ -138,7 +138,15 @@ Before we map our _Illumina_ reads against the reference, we need to check the q
 fastqc -f fastq SARS-CoV-2_exper-SRX9197062.fastq.gz
 {% endhighlight %}
 
-It took a bit more than a minute to run and it displays the progress. The outputs are two, a zip file and a html file (find them [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/mapping_reads)). The first one contain the raw metrics and all the output data while the html contains a group of plots summarising the quality tests. If you open the html file with a browser, you will see that there are 3 different icons in the left column: fail (red), warning (orange) and pass (green). In our case, the data has been curated before uploading so almost everything seems correct except for the _Per base sequence content_ and the _Sequence duplication levels_. From my point of view, given that I have not done the lab work, the data seems right with minor issues. In other words, we can proceed to the mapping of the reads.
+It took a bit more than a minute to run and it displays the progress. The outputs are two, a zip file and a html file (find them [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/mapping_reads)). The first one contain the raw metrics and all the output data while the html contains a group of plots summarising the quality tests. If you open the html file with a browser, you will see that there are 3 different icons in the left column: fail (red), warning (orange) and pass (green). In our case, the data has been curated before uploading so almost everything seems correct except for the _Per base sequence content_ and the _Sequence duplication levels_. From my point of view, given that I have not done the lab work, the data seems right with minor issues. We should try to correct those issues and, after, proceed to the mapping of the reads.
+
+<p>&nbsp;</p>
+
+**Correct reads errors**
+
+If we found some issues with the reads we can try to sove them. For example, as the information of the [run](https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR12718124) says in the section _Analysis_ there are only 11.23% of the reads identified for SARS-CoV-2. The others are contaminants that could cause a distorsion of our results. In this case, ***I am not running the correction because it take time and storage***. For this purpose, we can use different software: _BLAST_ (online or installed), _Kraken2_ or R scripting with the packages related to the databases _Silva_, _NCBI_ (_taxize_) or _Bold_ (_bold_). 
+
+Also, other mistakes can be corrected after mapping/assembling the reads. For example, the software _Blobtools_ (previously known as _Blobology_) is an option to use to visualize the content of genome assembly datasets.
 
 <p>&nbsp;</p>
 
@@ -182,9 +190,63 @@ The output is a SAM file with around 919 MB weight and 6.5 million lines. It is 
 
 <p>&nbsp;</p>
 
+**Remove duplicates**
+
+Duplicate reads can distort our findings. For example, can introduce PCR errors that will be treated as SNPs if they are not corrected. In order to correct those we need to do a few steps:
+
+{% highlight Bash %}
+samtools fixmate -m SARS-CoV-2_exper-SRX9197062.sam SARS-CoV-2_exper-SRX9197062_fixmate.sam
+samtools sort SARS-CoV-2_exper-SRX9197062_fixmate.sam -o SARS-CoV-2_exper-SRX9197062_fixmate_sorted.sam
+{% endhighlight %}
+
+After adding the mate score tag, we are ready to remove the duplicates:
+
+{% highlight Bash %}
+samtools markdup SARS-CoV-2_exper-SRX9197062_fixmate_sorted.sam SARS-CoV-2_exper-SRX9197062_fixmate_sorted_markdup.sam
+{% endhighlight %}
+
+Since we are using single-read data the process would not reduce the number of sequences but it will improve the posterior visualization. The remove of duplicates is more likely to improve paired-end reads datasets. Now, we can remove the intermediate files and keep the last one computed (markdup).
+
+<p>&nbsp;</p>
+
+**Transform _SAM_ to _BAM_ format**
+
+In order to run obtain the alignment Metrics using _Samtools flagstat_ we need a _BAM_ file. _BAM_ format is just a binary version of the _SAM_ format.
+
+{% highlight Bash %}
+samtools view -bS -T SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062_fixmate_sorted_markdup.sam > SARS-CoV-2_exper-SRX9197062.bam
+{% endhighlight %}
+
+<p>&nbsp;</p>
+
 **Alignment Quality control**
 
 The percentage of mapped reads is a global indicator of the overall sequencing accuracy and of the presence of contaminating DNA. We will run the program in the terminal but feel free to launch the desktop window.
+
+{% highlight Bash %}
+samtools index SARS-CoV-2_exper-SRX9197062.bam # Result = .bai
+samtools flagstat SARS-CoV-2_exper-SRX9197062.bam > SARS-CoV-2_exper-SRX9197062_Mapping_Metrics.txt
+{% endhighlight %}
+
+The output is a txt files including a few lines. Since our data is single-read and was curated before upload to NCBI, the results shown are poor. However, the procedure can be done for other data and generate different metrics.
+
+```
+6479048 + 0 in total (QC-passed reads + QC-failed reads)
+0 + 0 secondary
+0 + 0 supplementary
+6239545 + 0 duplicates
+6275945 + 0 mapped (96.87% : N/A)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (N/A : N/A)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (N/A : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+```
+
+The output shows that close to 97% of the reads have been mapped. Obviously, the lines related to the pairing of reads are uninformative for us.
 
 <p>&nbsp;</p>
 
@@ -193,19 +255,11 @@ The percentage of mapped reads is a global indicator of the overall sequencing a
 To visualize the mapped reads against the reference genome, we need to do two things:
 
 	1. Load our reference genome and annotation.
-	2. Load our SAM file
+	2. Load our BAM file
 
 In order to do the first step, we need to go to _Genomes_ > _Load Genome from File_. Then, select the file _SARS-CoV-2-reference.fasta_ and load it. The upper part of the window should show the full genome with a value of 29 kb in the middle of the line. In the upper right corner we can modify the zoom. If you move the blue line to the maximum you would be able to see the nucleotides per position. To load the gene annotation we can go to _File_ > _Load from File_ and select the file _SARS-CoV-2-reference.gff3_.
 
-For the second step, we first need to create an index file to load the _SAM_ file. We will use the software _Samtools_. The _SAM_ input have to be a gzip compress file with _bgzip_. After compressed, we will create the index.
-
-{% highlight Bash %}
-bgzip SARS-CoV-2_exper-SRX9197062_sorted.sam
-samtools index SARS-CoV-2_exper-SRX9197062.sam.gz SARS-CoV-2_exper-SRX9197062_sorted.sam.bai
-bgzip -d SARS-CoV-2_exper-SRX9197062.sam.gz # Decompress to read in IGV
-{% endhighlight %}
-
-After running the three commands, we can load the files in _IGV_ to see the alignments. With _IGV_ started, go to _File_ > _Load from File_ and select _SARS-CoV-2_exper-SRX9197062_sorted.sam_. The wizard will tell you that the index file was not found and you can click _Go_ to create one. Click _Go_ and wait until finished and loaded, it may take several minutes. It will create a _.sai_ file that is the index for our _SAM_ file. Once loaded you may be able to see something similar to the pictures. I said similar because the first picture shows the mapping of reads of the full genome with all the depth and coverage. The second picture shows the region to the left (position 3037 bp), which is marked in a red color and where we can find a variant (T instead of C).
+For the second step, we already created the required index for the _BAM_ file using _samtools index_ (_SARS-CoV-2_exper-SRX9197062.bam.bai_). If we want to load a _SAM_ file we need to created a _.sai_ format file. Also, if we load it in _IGV_ it will ask to create a index file with a pop-up wizard. To load the files in _IGV_ to see the alignments. With _IGV_ started, go to _File_ > _Load from File_ and select _SARS-CoV-2_exper-SRX9197062.bam_. It may take 1-2 minutes to load. Once loaded you may be able to see something similar to the pictures. I said similar because the first picture shows the mapping of reads of the full genome with all the depth and coverage. The second picture shows the region to the left (position 3037 bp), which is marked in a red color and where we can find a variant (T instead of C). Also, I modify the appearance a bit, such as, the color of the coverage track.
 
 <a href="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_full.png">
 	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_full.png" alt="IGV full" style="width:100%">
@@ -217,8 +271,6 @@ After running the three commands, we can load the files in _IGV_ to see the alig
 	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png" alt="IGV variant pos3037" style="width:100%">
 </a>
 
-After the visualization, the errors found in the quality control seems not to be interfiering with the alignment. Also, we know from NCBI that all the reads had a good quality score (around 37).
-
-Finally, you can obtain the consensus sequence of your mapping using _IGV_. Right click on the box containing the reads (Alignment track), a submenu would be displayed. This menu allow you to define parameters or sort the reads, among others. To get the consensus sequence you can click on _Copy consensus sequence_ and paste into a file, adapt and save to fasta format. If you want to visualize the consensus sequence click on _Quick consensus mode_. I recommend to play with the different options diplayed by the menu.
+After the visualization, the errors found in the quality control seems not to be interfiering with the alignment. Finally, you can obtain the consensus sequence of your mapping using _IGV_. Right click on the box containing the reads (Alignment track), a submenu would be displayed. This menu allow you to define parameters or sort the reads, among others. To get the consensus sequence you can click on _Copy consensus sequence_ and paste into a file, adapt and save to fasta format. If you want to visualize the consensus sequence click on _Quick consensus mode_. I recommend to play with the different options diplayed by the menu.
 
 <p>&nbsp;</p>
