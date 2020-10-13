@@ -46,7 +46,7 @@ The run contains different tabs (Metadata, Analysis, Reads and Data Access). We 
 
 <p>&nbsp;</p>
 
-Finally, to download the data click on _Download_. The link is highlighted in the following picture:
+Finally, download both, the fasta and fastq files (or download only the fastq and transform it to fasta). The download link is highlighted in the following picture:
 
 <p>&nbsp;</p>
 
@@ -88,7 +88,9 @@ In this tutorial we are going to **map** _Illumina_ reads against a reference ge
 
 **Software**
 
-The software we are going to use in the first section is ***BWA***. There are many available softwares for mapping reads, for example, TopHat, MAQ or Bowtie. This [article](https://academic.oup.com/bioinformatics/article/28/24/3169/245777) list a large number of them. Different software may have different qualities or specializations depending the input. I do not have any especial interest in using _BWA_ for the tutorial, as long as it has a fast algorithm.
+The software we are going to use in the first section is ***FastQC***. The software was develop by the Babraham Bioinformatics and has an open-source license. Read more and download from [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). Once downloaded, unzip the file `unzip fastqc_<version>.zip`. The files inside are pre-build and the software is ready to use. The software can run as an desktop interface or a terminal program. Add the path for quick access.
+
+The software we are going to use in the second section is ***BWA***. There are many available softwares for mapping reads, for example, TopHat, MAQ or Bowtie. This [article](https://academic.oup.com/bioinformatics/article/28/24/3169/245777) list a large number of them. Different software may have different qualities or specializations depending the input. I do not have any especial interest in using _BWA_ for the tutorial, as long as it has a fast algorithm.
 
 Download the software ***BWA*** from [here](bio-bwa.sourceforge.net). Place the file in the folder you prefer and run the following to decompress:
 
@@ -105,8 +107,6 @@ bwa make
 {% endhighlight %}
 
 If everything works, a executable file called bwa would be created. Then, we can add the program folder into the path to quick access bwa by running `export PATH=$PATH:<path>/<to>/<bwa>` (temporal) or modifying the path by defining it inside the _.bashrc_ file.
-
-The software we are going to use in the second section is ***Picard***. The software was develop by the Broad Institute and has an open-source license. _Picard_ contains a huge number of tools to manipulate high-throughput sequencing (HTS) data. In order to use the software we need _java-1.8_ installed. Read more and download from [here](https://broadinstitute.github.io/picard/) by clicking the first box of the right upper corner (Latest Jar Release).
 
 The software we are going to use in the thirs section are ***Samtools*** and ***IGV***. Download the _Samtools_ from [here](http://www.htslib.org/). To install the software, move it to the folder of your interest and run: 
 
@@ -127,6 +127,18 @@ unzip IGV_Linux_2.8.10_WithJava.zip
 {% endhighlight %}
 
 The generated folder contains the pre-build software so there is no need to install. We can run _IGV_ executing `./igv.sh` inside of the folder using the terminal. The terminal will be capture by the software and a window would appear.
+
+<p>&nbsp;</p>
+
+**Sequencing Quality control**
+
+Before we map our _Illumina_ reads against the reference, we need to check the quality of the reads. Doing the quality control is something we should always do to avoid increasing the storage, the running time and to avoid errors in our analysis. We can run the quality control for the compress fastq file directly.
+
+{% highlight Bash %}
+fastqc -f fastq SARS-CoV-2_exper-SRX9197062.fastq.gz
+{% endhighlight %}
+
+It took a bit more than a minute to run and it displays the progress. The outputs are two, a zip file and a html file (find them [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/mapping_reads)). The first one contain the raw metrics and all the output data while the html contains a group of plots summarising the quality tests. If you open the html file with a browser, you will see that there are 3 different icons in the left column: fail (red), warning (orange) and pass (green). In our case, the data has been curated before uploading so almost everything seems correct except for the _Per base sequence content_ and the _Sequence duplication levels_. From my point of view, given that I have not done the lab work, the data seems right with minor issues. In other words, we can proceed to the mapping of the reads.
 
 <p>&nbsp;</p>
 
@@ -160,41 +172,19 @@ Once we have generated the database from the reference genome, we can compute th
 bwa aln SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.fasta > SARS-CoV-2_exper-SRX9197062.sai
 {% endhighlight %}
 
-Once we have located coordinates of the input reads, we can compute the final step. In this case, our reads are **single-end** and smaller than 100 bp (average: 36bp). Given the manual, we should run the _BWA-backtrack_ software with the subcomand _samse_ to generate a _SAM_ file output.
+Once we have located coordinates of the input reads, we can compute the final step. In this case, our reads are **single-read** (SE) and smaller than 100 bp (average: 36bp). Single-read means that the reads have been sequenced from only one end, this method is fast, economical and a common in RNAseq studies. Given the manual, we should run the _BWA-backtrack_ software with the subcomand _samse_ to generate a _SAM_ file output.
 
 {% highlight Bash %}
-bwa samse SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.sai SARS-CoV-2_exper-SRX9197062.fasta
+bwa samse SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.sai SARS-CoV-2_exper-SRX9197062.fasta > SARS-CoV-2_exper-SRX9197062.sam
 {% endhighlight %}
 
 The output is a SAM file with around 919 MB weight and 6.5 million lines. It is recomendable to pipe the output into gzip to compress the file and avoid consuming extra storage (`bwa samse <files> | gzip -3`).
 
 <p>&nbsp;</p>
 
-**Quality control**
+**Alignment Quality control**
 
-Once we have our _Illumina_ reads mapped against the reference, we need to check the quality of the mapping. The percentage of mapped reads is a global indicator of the overall sequencing accuracy and of the presence of contaminating DNA. We can see all the different available programs by running:
-
-{% highlight Bash %}
-java -jar picard.jar -h
-{% endhighlight %}
-
-In our case, we will use ***CollectWgsMetrics*** inside of the _Base Calling_ tools. We can run the flag _-h_ to see the required and optional arguments.
-
-Before the quality control, we need to sort the _SAM_ file.
-
-{% highlight Bash %}
-java -jar picard.jar SortSam -h
-java -jar picard.jar SortSam -I SARS-CoV-2_exper-SRX9197062.sam -O SARS-CoV-2_exper-SRX9197062_sorted.sam -SORT_ORDER coordinate
-{% endhighlight %}
-
-The process took less than a minute. Now, we can run the quality control:
-
-{% highlight Bash %}
-java -jar picard.jar CollectWgsMetrics -h
-java -jar picard.jar CollectWgsMetrics -I SARS-CoV-2_exper-SRX9197062_sorted.sam -R SARS-CoV-2-reference.fasta -O SARS-CoV-2_exper-SRX9197062_quality-control.txt --INCLUDE_BQ_HISTOGRAM --READ_LENGTH 36
-{% endhighlight %}
-
-It took a bit more than a minute to run. The ouput includes three sections: run options, metrics and histogram. ***The downloaded data from NCBI SRA has been curated previously so we have a mean coverage of 0 and a genome territory of 29903 bp***. The values in the section _##METRICS CLASS_ shows what I said.
+The percentage of mapped reads is a global indicator of the overall sequencing accuracy and of the presence of contaminating DNA. We will run the program in the terminal but feel free to launch the desktop window.
 
 <p>&nbsp;</p>
 
@@ -211,8 +201,8 @@ For the second step, we first need to create an index file to load the _SAM_ fil
 
 {% highlight Bash %}
 bgzip SARS-CoV-2_exper-SRX9197062_sorted.sam
-samtools index SARS-CoV-2_exper-SRX9197062_sorted.sam.gz SARS-CoV-2_exper-SRX9197062_sorted.sam.bai
-bgzip -d SARS-CoV-2_exper-SRX9197062_sorted.sam.gz # Decompress to read in IGV
+samtools index SARS-CoV-2_exper-SRX9197062.sam.gz SARS-CoV-2_exper-SRX9197062_sorted.sam.bai
+bgzip -d SARS-CoV-2_exper-SRX9197062.sam.gz # Decompress to read in IGV
 {% endhighlight %}
 
 After running the three commands, we can load the files in _IGV_ to see the alignments. With _IGV_ started, go to _File_ > _Load from File_ and select _SARS-CoV-2_exper-SRX9197062_sorted.sam_. The wizard will tell you that the index file was not found and you can click _Go_ to create one. Click _Go_ and wait until finished and loaded, it may take several minutes. It will create a _.sai_ file that is the index for our _SAM_ file. Once loaded you may be able to see something similar to the pictures. I said similar because the first picture shows the mapping of reads of the full genome with all the depth and coverage. The second picture shows the region to the left (position 3037 bp), which is marked in a red color and where we can find a variant (T instead of C).
@@ -227,11 +217,8 @@ After running the three commands, we can load the files in _IGV_ to see the alig
 	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/mapping_reads/images/IGV_variant_pos3037.png" alt="IGV variant pos3037" style="width:100%">
 </a>
 
+After the visualization, the errors found in the quality control seems not to be interfiering with the alignment. Also, we know from NCBI that all the reads had a good quality score (around 37).
+
+Finally, you can obtain the consensus sequence of your mapping using _IGV_. Right click on the box containing the reads (Alignment track), a submenu would be displayed. This menu allow you to define parameters or sort the reads, among others. To get the consensus sequence you can click on _Copy consensus sequence_ and paste into a file, adapt and save to fasta format. If you want to visualize the consensus sequence click on _Quick consensus mode_. I recommend to play with the different options diplayed by the menu.
+
 <p>&nbsp;</p>
-
-<!--CollectMultipleMetrics
-CollectInsertSizeMetrics
-CollectAlignmentSummaryMetrics-->
-
-
-
