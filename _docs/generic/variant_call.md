@@ -8,13 +8,15 @@ sidebar: generic
 
 ## Data
 
-In this tutorial on how to do a variant call over genetic data we are going to continue with the data for _SARS-CoV-2_ used in the tutorial of [mapping reads against a reference genome](https://adriangeerre.github.io/popgen.github.io/mapping_reads.html). That means that the data (_BAM_ file) is obtained after running the mapping.
+In this tutorial on how to do a variant call over genetic data we are going to continue with the data for _SARS-CoV-2_ used in the tutorial of [mapping reads against a reference genome](https://adriangeerre.github.io/popgen.github.io/mapping_reads.html). That means that the data (_BAM_ file) is obtained after running the mapping. However, you can download the inputs and outputs from [here](http://adriangeerre.github.io/popgen.github.io/analysis/variant_call).
 
 ## Analysis
 
 **Explanation**
 
 Variant call analysis is a process to extract the variants or SNPs from our data in relation to a reference genome. These regions contain information that can be used to estimate different parameters in population genetics. The current input is a _SAM_/_BAM_ file and the current output a _VCF_ file. Samtools define a _VCF_ file as a text file format (most likely stored in a compressed manner). It contains meta-information lines, a header line, and then data lines each containing information about a position in the genome. The format also has the ability to contain genotype information on samples for each position. We also need the reference genome file in fasta/fastq format. Find all the information about _VCF_ files [here](https://samtools.github.io/hts-specs/VCFv4.2.pdf).
+
+<p>&nbsp;</p>
 
 **Software**
 
@@ -32,6 +34,8 @@ make install
 
 Remove the source code folder. After compiling the software, if everything runs without errors, the executable _bcftools_ will be inside the main folder (_bcftools-version_). Finally, add the folder to the path for quick access.
 
+<p>&nbsp;</p>
+
 **Create a VCF file**
 
 The steps to generate a VCF file are:
@@ -42,7 +46,7 @@ The steps to generate a VCF file are:
 	4. Calculate the read coverage.
 	5. Call the variants using the BAM file/s and the reference.
 
-In this case we have already define our sorted _BAM_ file and we have the reference sequence. We have the indexes of both files. Remember to generate the data following the mapping of Illumina reads explained [here](https://adriangeerre.github.io/popgen.github.io/mapping_reads.html). There is also an explanation on how to install the software on Linux. We will start in the **step 4**. Read about the meaning of the argument by running `bcftools mpileup`.
+In this case we have already define our sorted _BAM_ file and we have the reference sequence. We have the indexes of both files. Remember to generate the data following the mapping of Illumina reads explained [here](https://adriangeerre.github.io/popgen.github.io/mapping_reads.html) or download the inputs from [here](http://adriangeerre.github.io/popgen.github.io/analysis/variant_call). There is also an explanation on how to install the software on Linux. We will start in the **step 4**. Read about the meaning of the argument by running `bcftools mpileup`.
 
 {% highlight Bash %}
 bcftools mpileup -f SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.bam -O b -o SARS-CoV-2_exper-SRX9197062.bcf
