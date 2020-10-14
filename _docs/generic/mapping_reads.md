@@ -116,7 +116,7 @@ make
 make install
 {% endhighlight %}
 
-After compiling the software, if everything runs without errors, the executable _samtools_ will be inside the main folder. Inside of the _htslib_ folder, we will found other tools. Add both to the path as explained before for quick access. Also from the Broad Institute, the Integrative Genomic Viewer (_IGV_) software is one of the most common desktop tools to visualize our _SAM_/_BAM_ files. Access the link to download [IGV](https://software.broadinstitute.org/software/igv/download) in a zip file for Linux. 
+After compiling the software, if everything runs without errors, the executable _samtools_ will be inside the main folder (_samtools-version_). Inside of the _htslib_ folder, we will found other tools. Add both to the path as explained before for quick access. Also from the Broad Institute, the Integrative Genomic Viewer (_IGV_) software is one of the most common desktop tools to visualize our _SAM_/_BAM_ files. Access the link to download [IGV](https://software.broadinstitute.org/software/igv/download) in a zip file for Linux. 
 
 {% highlight Bash %}
 unzip IGV_Linux_2.8.10_WithJava.zip
@@ -140,9 +140,9 @@ It took a bit more than a minute to run and it displays the progress. The output
 
 **Correct reads errors**
 
-If we found some issues with the reads we can try to solve them. For example, as the information of the [run](https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR12718124) says in section _Analysis_ there are only 11.23% of the reads identified for SARS-CoV-2. The others are contaminants that could cause a distortion of our results. In this case, ***I am not running the correction because it takes time and storage***. For this purpose, we can use different software: _BLAST_ (online or installed), _Kraken2_, or R scripting with the packages related to the databases _Silva_, _NCBI_ (_taxize_) or _Bold_ (_bold_). 
+If we found some issues with the reads we can try to solve them. For example, as the information of the [run](https://trace.ncbi.nlm.nih.gov/Traces/sra/?run=SRR12718124) says in section _Analysis_ there are only 11.23% of the reads identified for SARS-CoV-2. The others are contaminants that could cause a distortion of our results. In this case, ***I am not running the correction because it takes time, storage and the data was already cleaned for us***. For this purpose, we can use different software: _BLAST_ (online or installed), _Kraken2_, or R scripting with the packages related to the databases _Silva_, _NCBI_ (_taxize_) or _Bold_ (_bold_). 
 
-Also, other mistakes can be corrected after mapping/assembling the reads. For example, the software _Blobtools_ (previously known as _Blobology_) is an option to use to visualize the content of genome assembly datasets.
+Also, other mistakes can be corrected after mapping/assembling the reads. For example, the software _Blobtools_ (previously known as _Blobology_) is an option to visualize the content of genome assembly datasets.
 
 <p>&nbsp;</p>
 
@@ -182,7 +182,7 @@ Once we have located the coordinates of the input reads, we can compute the fina
 bwa samse SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.sai SARS-CoV-2_exper-SRX9197062.fasta > SARS-CoV-2_exper-SRX9197062.sam
 {% endhighlight %}
 
-The output is a SAM file with around 919 MB weight and 6.5 million lines. It is recommendable to pipe the output into gzip to compress the file and avoid consuming extra storage (`bwa samse <files> | gzip -3`).
+The output is a SAM file with around 919 MB weight and 6.5 million lines. It is recommendable to pipe the output into gzip to compress the file and avoid consuming extra storage (`bwa samse <files> | gzip -3`). Moreover, we can use the subcommand _bamse_ to generate a _BAM_ file (binary SAM file). However, we will transform our _SAM_ file to _BAM_ later in the tutorial.
 
 <p>&nbsp;</p>
 
@@ -207,7 +207,7 @@ Since we are using single-read data the process would not reduce the number of s
 
 **Transform _SAM_ to _BAM_ format**
 
-In order to run obtain the alignment Metrics using _Samtools flagstat_ we need a _BAM_ file. _BAM_ format is just a binary version of the _SAM_ format.
+In order to run obtain the alignment metrics using _Samtools flagstat_ we need a _BAM_ file. _BAM_ format is just a binary version of the _SAM_ format.
 
 {% highlight Bash %}
 samtools view -bS -T SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062_fixmate_sorted_markdup.sam > SARS-CoV-2_exper-SRX9197062.bam

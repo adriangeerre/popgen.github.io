@@ -2,97 +2,74 @@
 title: Variant Call
 permalink: variant_call.html
 sidebar: generic
-tags: [PopGen1]
+# tags: [PopGen1]
 #product: Generic
 ---
 
-In order to prepare the data for the Admixture analysis, we need to get all variants in the genomes of each population.
+## Data
 
-Files:
-	* Variants: a vcf file (Variant Call Format)
-	* Meta data: a csv file
+In this tutorial on how to do a variant call over genetic data we are going to continue with the data for _SARS-CoV-2_ used in the tutorial of [mapping reads against a reference genome](https://adriangeerre.github.io/popgen.github.io/mapping_reads.html). That means that the data (_BAM_ file) is obtained after running the mapping.
 
-Find more information of the different file types required at [Samtools](https://samtools.github.io/hts-specs/).
+## Analysis
 
-### VCF file:
+**Explanation**
 
-Samtools define a _vcf_ file as a text file format (most likely stored in a compressed manner). It contains meta-information lines, a header line, and then data lines each containing information about a position in the genome. The format also has the ability to contain genotype information on samples for each position.
+Variant call analysis is a process to extract the variants or SNPs from our data in relation to a reference genome. These regions contain information that can be used to estimate different parameters in population genetics. The current input is a _SAM_/_BAM_ file and the current output a _VCF_ file. Samtools define a _VCF_ file as a text file format (most likely stored in a compressed manner). It contains meta-information lines, a header line, and then data lines each containing information about a position in the genome. The format also has the ability to contain genotype information on samples for each position. We also need the reference genome file in fasta/fastq format. Find all the information about _VCF_ files [here](https://samtools.github.io/hts-specs/VCFv4.2.pdf).
 
-### Create a VCF file (Platypus):
+**Software**
 
-We need a reference genome in order to generate the variant call. Also a haplotype file in order to generate it.
+The software we are going to use is ***Samtools***. In this tutorial we are going to use ***bcftools***.  Download the _bcftools_ from [here](http://www.htslib.org/download/). To install the software, move it to the folder of your interest and run: 
 
-We will use the tool _Platypus_ from the University of Oxford ([Platypus](https://www.well.ox.ac.uk/research/research-groups/lunter-group/lunter-group/platypus-a-haplotype-based-variant-caller-for-next-generation-sequence-data)). Platypus requieres a list of BAM files and the reference, both must be properly indexed. Samtools is recommended for that purpose. BAM (Binary Alignment/Map format) files are a binary version of SAM files. SAM files (Sequence Alignment/Map format)are a tab-delimited text file containing sequence alignment data.
-
-In other words, the steps to generate a VCF file from scratch are:
-
-<p>&nbsp;</p>
-
-	* Get sequences to align and reference sequence for aligment.
-	* Generate the SAM file with the alignment information of sequences against reference.
-	* Transform SAM to BAM file.
-	* Call the variants using the BAM file/s and the reference.
-
-<p>&nbsp;</p>
-
-For the second step, once we have the data, we will use _Samtools_. The source code of the software can be download from [Samtools](http://www.htslib.org/download/). The website shows how to build and install the software. For a pre-build software, the one we will use, we will download the packages from [Samtools Github page](https://github.com/samtools). More exactly, we will clone the repositories _htslib_ and _samtools_.
-
-<p>&nbsp;</p>
-
-In a linux environment:
-```
-mkdir /opt/tools
-cd /opt/tools
-#git clone https://github.com/samtools/htslib.git
-git clone https://github.com/samtools/samtools.git
-export PATH=/opt/tools/samtools/bin:$PATH
-```
-<p>&nbsp;</p>
-
-In order to download _Platypus_ we can follow the instructions in the [main website](https://www.rdm.ox.ac.uk/research/lunter-group/lunter-group/platypus-a-haplotype-based-variant-caller-for-next-generation-sequence-data). In the section _Quick links_ we can find the link to download the latest stable version. After downloading the file and into a linux enviroment, I install _Platypus_.
-
-<p>&nbsp;</p>
-
-```
-tar -xvzf platypus-latest.tgz
-cd Platypus_0.8.1
-```
-<p>&nbsp;</p>
-
-Basic usage:
-
-	python Platypus.py callVariants --bamFiles=data.bam --refFile=ref.fa --output=out.vcf
-
-
-
-
-
-**Install BiocManager in R**
-
-<p>&nbsp;</p>
-
-{% highlight R %}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install() 	# Push an update
+{% highlight Bash %}
+bzip2 -d bcftools-<version>.tar.bz2
+tar -xvf bcftools-<version>.tar
+rm bcftool-<version>.tar
+cd bcftools-<version>    # and similarly for bcftools and htslib
+./configure --prefix=<path>
+make
+make install
 {% endhighlight %}
 
-<p>&nbsp;</p>
+Remove the source code folder. After compiling the software, if everything runs without errors, the executable _bcftools_ will be inside the main folder (_bcftools-version_). Finally, add the folder to the path for quick access.
 
-After having the package manager for biological libraries, BiocManager, we can install the packages required for our analysis.
+**Create a VCF file**
 
-<p>&nbsp;</p>
+The steps to generate a VCF file are:
 
-{% highlight R %}
-BiocManager::install("SNPRelate")
+	1. Get sequences to align and reference sequence for aligment.
+	2. Generate the SAM file with the alignment information of sequences against reference.
+	3. Transform SAM to BAM file.
+	4. Calculate the read coverage.
+	5. Call the variants using the BAM file/s and the reference.
+
+In this case we have already define our sorted _BAM_ file and we have the reference sequence. We have the indexes of both files. Remember to generate the data following the mapping of Illumina reads explained [here](https://adriangeerre.github.io/popgen.github.io/mapping_reads.html). There is also an explanation on how to install the software on Linux. We will start in the **step 4**. Read about the meaning of the argument by running `bcftools mpileup`.
+
+{% highlight Bash %}
+bcftools mpileup -f SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.bam -O b -o SARS-CoV-2_exper-SRX9197062.bcf
 {% endhighlight %}
 
+After running the command, you may see the message **maximum number of reads per input file set to -d 250**. This message means that over 250 sequence depth the rest of them would not be taken into account to avoid excess memory usage. You can redefine this argument if you want. Now, with the _.bcf_ file, we can call the variants or SNPs. We need to define the ploidy, in our case, _SARS-CoV-2_ has a ploidy of 1 (indeed its genomes is a RNA string). Read about the meaning of the argument by running `bcftools call`.
+
+{% highlight Bash %}
+bcftools call --ploidy 1 -m -v SARS-CoV-2_exper-SRX9197062.bcf -o SARS-CoV-2_exper-SRX9197062.vcf
+{% endhighlight %}
+
+We can have a look at the file using the command `less`. The file contains a few variants (13) as defined by _IGV_ during the visualization of the mapping. Indeed, it contains the SNP in the position 3037 as the example image showed. However, for didactical purposes, we will filter the _VCF_ file to generate the final variant call output.
+
+{% highlight Bash %}
+vcfutils.pl varFilter SARS-CoV-2_exper-SRX9197062.vcf > SARS-CoV-2_exper-SRX9197062_final.vcf
+{% endhighlight %}
+
+After running the comand, and applying the default values ,the number of variants (SNPs) have reduce to 10. We can visualize the result using _IGV_ (as in the read mapping tutorial). We should load the reference, _.gff3_, _BAM_ and _VCF_ files.
+
 <p>&nbsp;</p>
 
-This command should install the library _SNPRelate_ and its dependecies.
+<a href="http://adriangeerre.github.io/popgen.github.io/analysis/variant_call/images/IGV_VCF.png">
+	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/variant_call/images/IGV_VCF.png" alt="Project reads" style="width:100%">
+</a>
 
+<p>&nbsp;</p>
 
+Finally, the variant call (_VCF_ file) shows 10 red lines on top of the alignment. If we compare with the ones defined in the coverage we can identify the 3 SNPs that were removed. Moreover, the variant marked at the end of the genome (position 29872) seems to be a false positive because it contains a small number of reads defining it.
 
-DOWNLOAD:
-
-ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/
+<p>&nbsp;</p>
