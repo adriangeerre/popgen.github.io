@@ -8,7 +8,7 @@ sidebar: generic
 
 ## Data
 
-In this tutorial on how to do a variant call over genetic data we are going to continue with the data for _SARS-CoV-2_ used in the tutorial of [mapping reads against a reference genome](https://adriangeerre.github.io/popgen.github.io/mapping_reads.html). That means that the data (_BAM_ file) is obtained after running the mapping. However, you can download the inputs and outputs from [here](http://adriangeerre.github.io/popgen.github.io/analysis/variant_call).
+In this tutorial on how to do a variant call over genetic data we are going to continue with the data for _SARS-CoV-2_ used in the tutorial of [mapping reads against a reference genome](https://adriangeerre.github.io/popgen.github.io/mapping_reads.html). That means that the data (_BAM_ file) is obtained after running the mapping. However, you can download the inputs and outputs from [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/variant_call).
 
 ## Analysis
 
@@ -46,7 +46,7 @@ The steps to generate a VCF file are:
 	4. Calculate the read coverage.
 	5. Call the variants using the BAM file/s and the reference.
 
-In this case we have already define our sorted _BAM_ file and we have the reference sequence. We have the indexes of both files. Remember to generate the data following the mapping of Illumina reads explained [here](https://adriangeerre.github.io/popgen.github.io/mapping_reads.html) or download the inputs from [here](http://adriangeerre.github.io/popgen.github.io/analysis/variant_call). There is also an explanation on how to install the software on Linux. We will start in the **step 4**. Read about the meaning of the argument by running `bcftools mpileup`.
+In this case we have already define our sorted _BAM_ file and we have the reference sequence. We have the indexes of both files. Remember to generate the data following the mapping of Illumina reads explained [here](https://adriangeerre.github.io/popgen.github.io/mapping_reads.html) or download the inputs from [here](https://github.com/adriangeerre/popgen.github.io/tree/master/analysis/variant_call). There is also an explanation on how to install the software on Linux. We will start in the **step 4**. Read about the meaning of the argument by running `bcftools mpileup`.
 
 {% highlight Bash %}
 bcftools mpileup -f SARS-CoV-2-reference.fasta SARS-CoV-2_exper-SRX9197062.bam -O b -o SARS-CoV-2_exper-SRX9197062.bcf
