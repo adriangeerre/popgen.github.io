@@ -21,11 +21,17 @@ folders:
     url: /admixture.html
 
     subfolders: 
-      - title: Extra
+      - title: NGS
         subfolderitems:
 
         - title: Mapping
           url: /mapping_reads.html
+
+        - title: Variant Call
+          url: /variant_call.html
+
+      - title: Extra
+        subfolderitems:
 
         - title: Glossary
           url: /glossary.html
