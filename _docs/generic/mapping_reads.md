@@ -8,15 +8,11 @@ sidebar: generic
 
 ## Data
 
-**Explanation**
+**Explanation & Download data**
 
-Everybody knows about Covid-19, Coronavirus, or SARS-CoV-2 (Severe acute respiratory syndrome coronavirus 2). The information on the consensus sequence can be found [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512). The Wuhan virus (Accession: NC_045512) contains around 29903 bp in an ss-RNA sequence. The reference genome (the first isolate virus) can be found in [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512). To download the reference DNA sequence click on _FASTA_ under the title. Once inside, you can click on _Send to_, select _Complete Record_, _File_, and format _FASTA_. Finally, click on _create file_ and save as _SARS-CoV-2-reference.fasta_. Moreover, following the same procedure, we can download the gene annotation for the reference genome. Click on _Send to_, select _Complete Record_, _File_, and format _GFF3_. Save the file with the name _SARS-CoV-2-reference.gff3_ All the information in NCBI for the virus can be accessed from [here](https://www.ncbi.nlm.nih.gov/sars-cov-2/).
+Everybody knows about Covid-19, Coronavirus, or SARS-CoV-2 (Severe acute respiratory syndrome coronavirus 2). Nowadays, given the situation all over the world, there is a lot of data available for this virus. We will download the reference genome from Wuhan and Illumina data to map. The Wuhan virus (Accession: NC_045512) contains around 29903 bp in an ss-RNA sequence. The reference genome (the first isolate virus) can be found in [here](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512). To download the reference DNA sequence click on _FASTA_ under the title. Once inside, you can click on _Send to_, select _Complete Record_, _File_, and format _FASTA_. Finally, click on _create file_ and save as _SARS-CoV-2-reference.fasta_. Moreover, following the same procedure, we can download the gene annotation for the reference genome. Click on _Send to_, select _Complete Record_, _File_, and format _GFF3_. Save the file with the name _SARS-CoV-2-reference.gff3_ All the information in NCBI for the virus can be accessed from [here](https://www.ncbi.nlm.nih.gov/sars-cov-2/).
 
-<p>&nbsp;</p>
-
-**Download data**
-
-To get _Illumina_ data can be found in [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) searching for _SARS-CoV-2_. In this case, I choose the accession [SRX9197062](https://www.ncbi.nlm.nih.gov/sra/SRX9197062[accn]) because of didactical purposes. The short genome of the virus allows a wider vision and an easier computation than, for example, the human genome. The following image shows a screenshot of the accession:
+Illumina data (reads) can be found in [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) searching for _SARS-CoV-2_. In this case, I choose the accession [SRX9197062](https://www.ncbi.nlm.nih.gov/sra/SRX9197062[accn]) because of didactical purposes. The short genome of the virus allows a wider vision and an easier computation than, for example, the human genome. The following image shows a screenshot of the accession:
 
 <p>&nbsp;</p>
 
@@ -26,7 +22,7 @@ To get _Illumina_ data can be found in [NCBI SRA](https://www.ncbi.nlm.nih.gov/s
 
 <p>&nbsp;</p>
 
-The picture shows the information related to the accession. For example, the number of bases, the size of the file, the day it was publish and other data, such as, sequencing machine used. By clicking on the highlighted area of the picture you will access the run:
+The picture shows the information related to the accession. For example, the number of bases, the size of the file, the day it was publish and other data, such as, sequencing machine used. By clicking on the highlighted area of the picture you will access the sequencing run:
 
 <p>&nbsp;</p>
 
@@ -36,7 +32,7 @@ The picture shows the information related to the accession. For example, the num
 
 <p>&nbsp;</p>
 
-The picture shows the information related to the accession. For example, the number of bases, the size of the file, the day it was published, and other data, such as the sequencing machine used. By clicking on the highlighted area of the picture you will access the run:
+Inside of the run, we have different sections: _Metadata_, _Analysis_, _Reads_, and _Data Access_. The first two are a recap of the data pre and post-analysis. We are interested in downloading the data so we access the section _Reads_ (highlighted in the previous picture).
 
 <p>&nbsp;</p>
 
@@ -46,7 +42,7 @@ The picture shows the information related to the accession. For example, the num
 
 <p>&nbsp;</p>
 
-Finally, download both, the fasta and fastq files (or download only the fastq and transform it into fasta). The download link is highlighted in the following picture:
+Once inside of _Reads_, we can see a interactive table that contains all reads. To download the reads, click on _Filtered Download_. Finally, select both, the fasta and fastq files and download them (or download only the fastq and transform it into fasta). The download link is highlighted in the following picture:
 
 <p>&nbsp;</p>
 
@@ -82,7 +78,7 @@ cat SARS-CoV-2_exper-SRX9197062.fasta_part* > SARS-CoV-2_exper-SRX9197062.fasta
 
 **Explanation**
 
-In this tutorial, we are going to **map** _Illumina_ reads against a reference genome (without a reference we will _de novo_ assembly the genome). We are using reads coming from a Polymerase Chain Reaction (PCR) so we will have several times the same reads and also, reads that overlap between them. The reference genome will be the template that will help us to place each read in the proper location. Once we have our sample genome we can compare and define the differences (variants). The output of the mapping is a _SAM_ (Sequence Alignment/Map) file, read more about the format [here](http://samtools.github.io/hts-specs/SAMv1.pdf).
+In this tutorial, we are going to **map** Illumina reads against a reference genome (without a reference we will _de novo_ assembly of the genome). We are using reads coming from a Polymerase Chain Reaction (PCR) so we will have several times the same reads and also, reads that overlap between them. The reference genome will be the template that will help us to place each read in the proper location. Once we have our sample genome we can compare and define the differences (variants). The output of the mapping is a _SAM_ (Sequence Alignment/Map) file, read more about the format [here](http://samtools.github.io/hts-specs/SAMv1.pdf).
 
 <p>&nbsp;</p>
 
@@ -92,21 +88,21 @@ The software we are going to use in the first section is ***FastQC***. The softw
 
 The software we are going to use in the second section is ***BWA***. There are many available softwares for mapping reads, for example, TopHat, MAQ, or Bowtie2. This [article](https://academic.oup.com/bioinformatics/article/28/24/3169/245777) lists a large number of them. Different software may have different qualities or specializations depending on the input. I do not have any special interest in using _BWA_ for the tutorial, as long as it does a fast computation.
 
-Download the software ***BWA*** from [here](bio-bwa.sourceforge.net). Place the file in the folder you prefer and run the following to decompress:
+Download the software ***BWA*** from [here](http://bio-bwa.sourceforge.net/). Place the file in the folder you prefer and run the following to decompress:
 
 {% highlight Bash %}
 bzip2 -d bwa-<version>.tar.bz2
 tar -xvf bwa-<version>.tar
 {% endhighlight %}
 
-That should create a folder called bwa-_version_ where the files to compile the program are contained. Now, we should compile the program by running the following (extracted from [Github](https://github.com/lh3/bwa)):
+That should create a folder called _bwa-version_ where the files to compile the program are contained. Now, we should compile the program by running the following (extracted from [Github](https://github.com/lh3/bwa)):
 
 {% highlight Bash %}
 cd bwa-<version>
 bwa make
 {% endhighlight %}
 
-If everything works, an executable file called _bwa_ would be created. Then, we can add the program folder into the path to quick access bwa by running `export PATH=$PATH:<path>/<to>/<bwa>` (temporal) or modifying the path by defining it inside the _.bashrc_ file.
+If everything works, an executable file called _bwa_ would be created. Then, we can add the program folder into the path to quick access bwa by running `export PATH=$PATH:/<path>/<to>/<bwa>` (temporal) or modifying the path by defining it inside the _.bashrc_ file.
 
 The software we are going to use from the third section to the end are ***Samtools*** and ***IGV***. Download the _Samtools_ from [here](http://www.htslib.org/). To install the software, move it to the folder of your interest and run: 
 
@@ -120,7 +116,7 @@ make
 make install
 {% endhighlight %}
 
-After compiling the software, if everything runs without errors, the executable _samtools_ will be inside the main folder. Inside of the _htslib_ folder, we will found other tools. Add both to the path as explained before for quick access. Also from the Broad Institute, the Integrative Genomic Viewer (_IGV_) software is one of the most common tools to visualize our _SAM_/_BAM_ file. It is a desktop tool Access the link to download [IGV](https://software.broadinstitute.org/software/igv/download) in a zip file for Linux. 
+After compiling the software, if everything runs without errors, the executable _samtools_ will be inside the main folder. Inside of the _htslib_ folder, we will found other tools. Add both to the path as explained before for quick access. Also from the Broad Institute, the Integrative Genomic Viewer (_IGV_) software is one of the most common desktop tools to visualize our _SAM_/_BAM_ files. Access the link to download [IGV](https://software.broadinstitute.org/software/igv/download) in a zip file for Linux. 
 
 {% highlight Bash %}
 unzip IGV_Linux_2.8.10_WithJava.zip
@@ -132,7 +128,7 @@ The generated folder contains the pre-build software so there is no need to inst
 
 **Sequencing Quality control**
 
-Before we map our _Illumina_ reads against the reference, we need to check the quality of the reads. Doing quality controls is something we should always do to avoid increasing the storage, the running time, and to avoid errors in our analysis. We can run the quality control for the compress fastq file directly.
+Before we map our Illumina reads against the reference, we need to check the quality of the reads. Doing quality controls is something we should always do to avoid increasing the storage, the running time, and to avoid errors in our analysis. We can run the quality control for the compress fastq file directly.
 
 {% highlight Bash %}
 fastqc -f fastq SARS-CoV-2_exper-SRX9197062.fastq.gz
