@@ -99,11 +99,15 @@ pcs <- seq(1, length(pca_var))
 plot(pcs, pca_var, type = "b", col = "red", pch = c(16))
 {% endhighlight %}
 
-<img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png" alt="PCA variance" style="width:100%">
+<a href="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png">
+	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA_variance.png" alt="PCA variance" style="width:100%">
+</a>
 
 The basic plot shows that the first two PCs contains the most variance (5.49%) while the rest contains a small percent of the variance. Given the results, we will plot the two first PCs. First, we match the sample id with the population and region. Then, we plot the two first PCs colored by region.
 
-<img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA.png" alt="PCA" style="width:100%">
+<a href="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA.png">
+	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/PCA.png" alt="PCA" style="width:100%">
+</a>
 
 In order to run _ADMIXTURE_ we need to generate the correct input file. In this case we are going to use a _.bed_ file and the supporting file (_bim_ and _fam_). We can use the following code to generate the file in R.
 
@@ -184,7 +188,9 @@ ord <- q_matrix[order(q_matrix$V1, q_matrix$V2, q_matrix$V3, q_matrix$V4, q_matr
 admixture_plot <- barplot(t(as.matrix(ord)), space=c(0.2), col=rainbow(5), xlab="Individual #", ylab="Ancestry", border=NA, las=2)
 {% endhighlight %}
 
-<img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/Admixture_plot.png" alt="Admixture for K=5" style="width:100%">
+<a href="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/Admixture_plot.png">
+	<img src="http://adriangeerre.github.io/popgen.github.io/analysis/admixture/images/Admixture_plot.png" alt="Admixture for K=5" style="width:100%">
+</a>
 
 The admixture plot shows 5 different sections. The first three sections (purple, blue and green) contain almost pure individuals. The last two (yellow and red) contain a remarkable amounf of individuals with variants from another regions. The yellow region, include the most admixture from other regions. The different regions cannot be defined from the admixture plot but we can expect that the yellow region is America, the red Africa and the other three the rest, similar to the PCA clustering.
 
