@@ -9,7 +9,9 @@ This website is a project done by Adrián Gómez, started in 2020 and **still in
 
 I hope you enjoy the course!!
 
-## Bibliography
+<p>&nbsp;</p>
+
+**Bibliography**
 
 _An Introduction to Population Genetics - Theory and Applications_, Rasmus Nielsen & Montgomery Slatkin, Sinauser Associates, 2013, ISBN 978-1-60535-153-7
 
