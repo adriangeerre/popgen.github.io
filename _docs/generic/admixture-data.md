@@ -1,6 +1,6 @@
 ---
-title: Data preparation: VCF example for Admixture
-permalink: data_prep_vcf_example.html
+title: Data for Admixture analysis
+permalink: admixture-data.html
 sidebar: generic
 tags: [PopGen1]
 #product: Generic

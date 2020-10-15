@@ -1,6 +1,6 @@
 ---
 title: Variant Call
-permalink: variant_call.html
+permalink: variant-call.html
 sidebar: generic
 # tags: [PopGen1]
 #product: Generic

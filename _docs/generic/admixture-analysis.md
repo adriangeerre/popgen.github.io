@@ -1,6 +1,6 @@
 ---
 title: Admixture
-permalink: admixture.html
+permalink: admixture-analysis.html
 sidebar: generic
 #tags: [PopGen1]
 #product: Generic
@@ -22,7 +22,7 @@ The ***Variant Call Format*** or _VCF_ is defined by ***Samtools*** as a text fi
 
 ## Admixture
 
-***Include definition of admixture***
+The definition of the word _admixture_ is "A mixture" or "something mixed with something else". In genetics, the word references to the mixture of individuals, indeed, the mixture of the genetic information, from different groups. We understand the mixture as the mating and the generation of descendants. Basically, the estimate of admixture between differentiated populations is done to determine how mixed they are and characterize their evolutionary history.  For that purpose, we use the variants/SNPs in the populations to compare their similarity.
 
 The admixture can be estimated using variants in respect to a reference genome. In this section, we will use the software [ADMIXTURE](https://dalexander.github.io/admixture/download.html) (which used to be available in the _University of California_). Other packages are able to estimate admixture within a population, for example, _ipADMIXTURE_ (2020) which uses Q matrices. Also, inside the software _ADMIXTURE_ of the last program you can get sample data files from the [HapMap3](https://www.sanger.ac.uk/resources/downloads/human/hapmap3.html). However, I find more insteresting to use [1000 genomes](https://www.internationalgenome.org/) since [NCBI](https://www.ncbi.nlm.nih.gov/variation/news/NCBI_retiring_HapMap/) took HapMap 3 down and it is more recent.
 

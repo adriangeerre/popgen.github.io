@@ -17,18 +17,25 @@ folders:
   - title: Demography 
     url: /demography.html
 
-  - title: Admixture
-    url: /admixture.html
-
     subfolders: 
+      
+      - title: Admixture
+        subfolderitems:
+
+        - title: Data
+          url: /admixture-data.html
+        
+        - title: Analysis
+          url: /admixture-analysis.html
+
       - title: NGS
         subfolderitems:
 
         - title: Mapping
-          url: /mapping_reads.html
+          url: /mapping-reads.html
 
         - title: Variant Call
-          url: /variant_call.html
+          url: /variant-call.html
 
       - title: Extra
         subfolderitems:

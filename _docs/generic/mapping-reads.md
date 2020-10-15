@@ -1,6 +1,6 @@
 ---
-title: Mapping reads
-permalink: mapping_reads.html
+title: Read Mapping
+permalink: mapping-reads.html
 sidebar: generic
 #tags: [PopGen1]
 #product: Generic
