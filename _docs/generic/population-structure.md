@@ -1,8 +1,8 @@
 ---
-title: Demography
-permalink: demography.html
+title: Population Structure
+permalink: population-structure.html
 sidebar: generic
-#tags: [PopGen1]
+#tags: [getting-started, formatting]
 #product: Generic
 ---
 
