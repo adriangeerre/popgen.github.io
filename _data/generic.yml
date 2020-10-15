@@ -49,8 +49,23 @@ related_resources_title: Related Resources
 
 related_resources_list:
 
-- title: Github
-  url: http://github.com
-
 - title: Graham Coop
   url: https://github.com/cooplab/popgen-notes/blob/master/release_popgen_notes.pdf
+
+- title: Joseph Felsenstein
+  url: https://evolution.gs.washington.edu/pgbook/pgbook.pdf
+
+- title: Kent E. Holsinger
+  url: http://darwin.eeb.uconn.edu/eeb348-notes/Lecture-Notes-in-Population-Genetics.pdf
+
+- title: Samtools Documentation
+  url: http://www.htslib.org/doc/#manual-pages
+
+- title: NCBI
+  url: https://www.ncbi.nlm.nih.gov/
+
+- title: 1000 Genomes project
+  url: https://www.internationalgenome.org/
+
+- title: Latex formulas editor
+  url: https://latex.codecogs.com/
