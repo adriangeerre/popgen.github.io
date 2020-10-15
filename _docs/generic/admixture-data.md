@@ -2,7 +2,7 @@
 title: Data for Admixture analysis
 permalink: admixture-data.html
 sidebar: generic
-tags: [PopGen1]
+#tags: [PopGen1]
 #product: Generic
 ---
 
