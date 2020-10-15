@@ -5,7 +5,7 @@ sidebar: generic
 topnav: topnav
 ---
 
-This website is a project done by Adrián Gómez, started in 2020 and **still in progress**. This course contains explanations about Population Genetics divided into different sections. Each section will contain one or more analyzes and theoretical background. The sections can be found in the sidebar on the left of the webpage. The information given is based on different books and quality sources, such as the bibliography describes below. All the information has been written by me, under my understanding. Please, write an issue if any mistake is found. Moreover, I am open to debate and improvement about the knowledge expose in this course.
+This website is a project done by Adrián Gómez, started in 2020 and **still in development**. This course contains explanations about Population Genetics divided into different sections. Each section will contain one or more analyzes and theoretical background. The sections can be found in the sidebar on the left of the webpage. The information given is based on different books and quality sources, such as the bibliography describes below. All the information has been written by me, under my understanding. Please, write an issue if any mistake is found. Moreover, I am open to debate and improvement about the knowledge expose in this course.
 
 I hope you enjoy the course!!
 
